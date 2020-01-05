@@ -16,7 +16,9 @@ class Layout extends React.Component {
             ...scale(0.5),
             marginBottom: rhythm(1.5),
             marginTop: 0,
-            textTransform: "none",
+            textTransform: "uppercase",
+            fontFamily: "Montserrat, sans-serif",
+            // textTransform: "none",
           }}
         >
           <Link

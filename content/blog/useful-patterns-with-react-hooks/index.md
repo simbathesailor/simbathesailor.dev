@@ -76,8 +76,8 @@ Above we moved out the fn definition and now, it will have same reference across
 
 React also gives us a special hook named as useCallback, which allows us to keep the reference intact based on dependency list passed as the second argument. Here is the API for useCallback
 
-```
-const fn = useCallback(function() {}, [a, b, c])
+```jsx
+const fn = useCallback(function A() {}, [a, b, c])
 ```
 
 The first argument function is synchronised with the elements in dependency lists. The fn will only point to a new reference when a, b or c changes in this example. Let’s make use of it to solve our problem.
@@ -92,7 +92,7 @@ Now lets say the fn access some value from the component something like this:
 
 But the the fn reference will not change across re-render as the dependency is blank array in our case.
 
-```
+```jsx
 const fnCallback = React.useCallback(fn, [])
 ```
 
@@ -127,9 +127,9 @@ Now the above example can be written as :
 
 The ref approach becomes silent dependencies. What do I mean by silent dependencies ? . Let’s see that
 
-```
+```jsx
 useEffect(() => {
- // some logic
+  // some logic
 }, [refDependency, nonRefDependency1, nonRefDependency2])
 ```
 
@@ -146,7 +146,8 @@ So if only refDependency.current changes , it will not trigger the effect callba
 
 Before, we move ahead let’s see one of the pattern that can used for avoiding the more work from consumers of custom hooks.
 
-**CASE 2**  
+**CASE 2**
+
 Let’s call it **ref callback pattern** for now(So this name is pretty common, that I have heard recently, but sounds legit). Now let’s observe the code below:
 
 `gist:simbathesailor/d3f268668bb8eb3ba920d050cd51cd78`
