@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `simbathesailor`,
     author: `Anil Kumar Chaudhary`,
-    description: `A place to to share my thoughts !!`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    description: `Bits of tech and life !!`,
+    siteUrl: `https://simbathesailor.dev`,
     social: {
       twitter: `simbatheesailor`,
     },
@@ -12,15 +12,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`,
+        path: `${__dirname}/src/pages/`,
+        name: `pages`,
       },
     },
     {
@@ -63,7 +56,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#3282b8`,
         display: `minimal-ui`,
-        icon: `content/assets/icon.png`,
+        icon: `src/assets/icon.png`,
       },
     },
     `gatsby-plugin-offline`,
@@ -154,6 +147,12 @@ module.exports = {
               // Add additional HTML escapes by providing a mapping
               // of HTML entities and their escape value IE: { '}': '&#123;' }
               escapeEntities: {},
+            },
+          },
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
             },
           },
         ],
