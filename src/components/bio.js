@@ -32,7 +32,6 @@ const Bio = () => {
       }
     }
   `)
-  console.log("TCL: Bio -> data", data)
 
   const { author, social } = data.site.siteMetadata
   return (
