@@ -22,11 +22,11 @@ Hence an example based on controlled components.
 
 Notice few things above.
 
-1. OnChange function need to do two things.
+**1.** OnChange function need to do two things.
 
-2. A non debounced change which changes the value. It can't be debounced. Making it debounced will stop the values to reflect in the input as it is a controlled component.
+**2.** A non debounced change which changes the value. It can't be debounced. Making it debounced will stop the values to reflect in the input as it is a controlled component.
 
-3. A debounced change. In the above example we are just logging something but in real application it can be anything e.g making api call, updating filter e.t.c. That has to be debounced for the performance sake.
+**3.** A debounced change. In the above example we are just logging something but in real application it can be anything e.g making api call, updating filter e.t.c. That has to be debounced for the performance sake.
 
 Here is an image showing the visual representation of what's going on here. Made with [excalidraw](https://www.excalidraw.com). Quite smiple and amazing to use.
 
@@ -43,3 +43,92 @@ But as you must be thinking this is not always possible to do. And you are right
 So let's try 2nd approach.
 
 ### Second Try
+
+`gist:simbathesailor/1d00a0ac510b3577b9c6e5eb6c458569`
+
+Notice we bring in **debouncedmakeApiCall** inside the **ChildComponent**. We are making use of useCallback to persist the reference of function intact across rerender. And it works correctly. Checkout this codepen link.
+
+https://codepen.io/stack26/pen/qBExgGV?editors=1011
+
+But this approach is more or less same as the first one. If you can do this method, you can very well
+do the first method. With the useCallback and blank dependency, the closure is going to get created only once for the callback passed. It means the returned value from useCallback function will return same function reference across rerender.
+
+```jsx
+const returnedCallback = React.useCallback(() => {}, [])
+// returnedCallback will point to same function, until the component unmounts
+```
+
+If the debouncedmakeApiCall is dependent on any other value (e.g props, any variable in scope), the new values will not get reflected while the debounce function runs.
+
+```jsx
+const returnedCallback = React.useCallback(value => {
+  // using some value available in the scope
+  makeApiCallRaw(value, someValueFromOuterScope)
+}, [])
+```
+
+Now someValueFromOuterScope will keep on referring to its initial value across rerender. To see this case, lets add something to our callback as dependency and see the results. We only have value variable available in outside scope. So let's add it.
+
+https://codepen.io/stack26/pen/MWYQxVo?editors=1111
+
+Notice how the effect runs for all the value changes.
+It is definitely something which we don't want.
+
+> So what approach should be followed?. The second approach looks quite useful ,but has the problem of changing its reference for every run.
+
+One way can be if we force all the dependencies as the argument of the debounce function and keep the dependency as the blank array. We solve both the issues.
+
+**1.** The reference to the function will remain persisted across rerender.
+
+**2.** The debounce function will be getting all the latest values.No stale data and no closure issues.
+
+But then, Is it always possible ? . May be or May be not!!. Some time it can be easy as something exaplained above or sometimes it can be very difficult to do dependending on the logic involved.
+
+> What If we can build a custom hook which does it fo us. Something like **useDebouncedEffect**.
+
+The API can be similar to useEffect.
+
+```jsx
+useDebouncedEffect(callback, dependencyArr)
+```
+
+It can be very handy and prevent all those arguments passing and reference maintainance hustles. Any thing available in scope should be available having expected values.
+
+Let's try this. First let me explain you the idea which has been used.
+
+So useEffect only run again when dependency list changes.
+
+> What if we can debounce the change
+> to the dependency list ?
+
+If we are able to do so , we should be able to debounce the useEffect callback run also.
+
+Yes friends. The hook we are going to write is just based on this idea.
+
+I am going to use of usePrevious custom hook.
+
+```jsx
+function usePrevious(value) {
+  const ref = React.useRef(value)
+  React.useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
+```
+
+Why ?
+
+We will see below
+
+`gist:simbathesailor/59fa57cdaf9240fe94a5069543d2e1c3`
+
+**1.** We are doing book keeping for dependency passed to the hook. (Line no: 3)
+
+**3.** useEffect on line 28 is dependent on
+**\_dependency** not on **dependency**. This is most important part. We are debouncing the change to \_dependency and hence the effect callback is also debounced.
+
+**3.** From line 9 - 19, we are essentially making change to the \_dependency in debounced fashion. We are also updating a **testRef.current** value which is crucial.
+
+> Note: I have tried the useDebouncedEffect hook for my projects and it worked fine for all the usecases.
+> I am still have some questions , which are kind of unanswered. More on this below.
