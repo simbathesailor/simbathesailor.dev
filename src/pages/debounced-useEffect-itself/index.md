@@ -3,6 +3,7 @@ title: Writing a debounced useEffect itself !!
 date: 2020-01-10T16:38:25.728Z
 tags: patterns,react-hook,usecallback,useref
 published: "true"
+description: This article explains various approaches to implement debouncing with hooks.
 ---
 
 ![Photo by Mark Rabe on Unsplash](https://images.unsplash.com/photo-1502780809386-f4ed7a4a4c59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)
@@ -130,7 +131,7 @@ https://codepen.io/stack26/pen/YzPeojM?editors=0111
 
 Start typing in the input box and see the useDebouncedEffect running after 2, 3 and 5 seconds.
 
-**Check the console logs**
+**Check the logs in dev tools for the output**
 
 **But there is one problem, have you noticed it ?**
 

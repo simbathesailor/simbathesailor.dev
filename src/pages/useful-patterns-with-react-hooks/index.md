@@ -3,6 +3,7 @@ title: Useful Patterns with React hooks
 date: 2020-01-04T16:38:25.728Z
 tags: patterns,react-hook,usecallback,useref
 published: "true"
+description: Some useful patterns that worked for me using hooks for 1 year.
 ---
 
 ![](https://cdn-images-1.medium.com/max/1024/0*nJLkAHTH68MGsDbi)<figcaption>Photo by <a href="https://unsplash.com/@abeso?utm_source=medium&amp;utm_medium=referral">Sebastian Bednarek</a> on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral">Unsplash</a></figcaption>
