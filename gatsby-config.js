@@ -87,7 +87,7 @@ module.exports = {
         short_name: `simbathesailor`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#3282b8`,
+        theme_color: `#00adb5`,
         display: `minimal-ui`,
         icon: `src/assets/icon.png`,
       },
