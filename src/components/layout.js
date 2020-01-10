@@ -45,11 +45,11 @@ class Layout extends React.Component {
             style={{
               boxShadow: `none`,
               textDecoration: `none`,
-              color: `inherit`,
+              // color: `inherit`,
             }}
             to={`/`}
           >
-            {title}
+            {`${title}.DEV`}
           </Link>
         </h4>
       )
