@@ -36,7 +36,7 @@ Here is an image showing the visual representation of what's going on here. Made
 
 `gist:simbathesailor/fe73dc6cefd6f59d50730bd65e9bacfa`
 
-Notice above our **makeApiCallRaw** is not dependent on any thing in the component and its all good to move the pull the functiin outside of the component. In this case the makeApiCallRow will be debounced.
+Notice above our **makeApiCallRaw** is not dependent on any thing in the component and its all good to pull the function outside of the component. In this case the makeApiCallRow will be debounced.
 
 But as you must be thinking this is not always possible to do. And you are right.
 
