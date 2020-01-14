@@ -193,7 +193,9 @@ Let’s see one more example having functions, object and arrays in it.
 
 In the example we are just using the knowledge which we have discussed in this article till now. I am not going to explain the code above. I think you should go ahead and read it.
 
-I think mix of useCallback, useRefValues and useCallbackRef solves almost all of the issues.
+I think mix of **useCallback, useRefValues and useCallbackRef** solves almost all of the issues.
+
+---
 
 Feel free to point if any issues with the code snippets above. I have also written a handy library to debug hooks. Feel free to try it and let me know. A babel plugin is also available for it.
 
