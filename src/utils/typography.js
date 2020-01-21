@@ -10,6 +10,10 @@ Wordpress2016.overrideThemeStyles = () => {
     hr: {
       background: "var(--hr)",
     },
+    h3: {
+      fontFamily: "inherit",
+      fontWeight: 800,
+    },
     "a.gatsby-resp-image-link": {
       boxShadow: "none",
     },
@@ -26,6 +30,7 @@ Wordpress2016.overrideThemeStyles = () => {
     // TODO: why tho
     "h1 code, h2 code, h3 code, h4 code, h5 code, h6 code": {
       fontSize: "inherit",
+      fontFamily: "inherit",
     },
     "li code": {
       fontSize: "1rem",
