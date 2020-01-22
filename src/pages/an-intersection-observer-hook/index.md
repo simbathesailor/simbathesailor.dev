@@ -123,16 +123,17 @@ const App = () => {
 
 The hook returns an array. Let's say that array name is **Arr**.
 
-| Index  | Name                   | Type                         | Description                                                                               |
-| ------ | ---------------------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
-| Arr[0] | isVisible              | boolean                      | Tells whether the target element is visible or not                                        |
-| Arr[1] | targetElementRef       | Function                     | The target element ref, add it to target element                                          |
-| Arr[2] | rootElementCallbackRef | Function                     | The root element ref, add it to root element or can just leave it if document is the root |
-| Arr[3] | observer               | Intersection observer Object | Can be used to un-observe the target.                                                     |
+1. **isVisible (boolean)**: Tells whether the target element is visible or not
+
+2. **targetElementRef (Function)**: The target element ref. You have to add it to target element
+
+3. **rootElementCallbackRef (Function)**: The root element ref, You can add it to root element or can just leave it if document is the root
+
+4. **observer (Intersection observer Object)**: Observer object itself
 
 ---
 
-Notice above that we are not passing the refs from the App component, but we are getting refs back from the the useIntersectionObserver. I have explained this kind of pattern in this [article](https://simbathesailor.dev/useful-patterns-with-react-hooks/).
+Notice above that we are not passing the refs from the App component, but we are getting refs back from the the useIntersectionObserver. This is good because the consumer of this hook doesnot have to create an ref and send it to the hook. Less work for consumer. I have explained this kind of pattern in this [article](https://simbathesailor.dev/useful-patterns-with-react-hooks/).
 
 Now we need to construct the observer object using **IntersectionObserver** constructor. We also need to put it inside useEffect because we want to watch for options changes. Following code is the crux of this hook.
 
