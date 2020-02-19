@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "simbathesailor.dev",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A personal blog where I talk about interactions with machine and humans",
   "version": "0.1.0",
   "author": "Anil Chaudhary <anilchaudhary453@gmail.com>",
   "bugs": {
@@ -42,6 +42,7 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
+    "gatsby-plugin-dark-mode": "^1.1.0",
     "prettier": "^1.19.1"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",

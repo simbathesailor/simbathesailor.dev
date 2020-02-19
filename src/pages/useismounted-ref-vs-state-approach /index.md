@@ -7,6 +7,7 @@ description: An analysis of two different approaches to write useIsMounted
 ---
 
 ![](./coverisMounted.png)
+
 We moved from class based components to function based component with hooks. Hooks provide us better ways to use react features without sacrificing the developer experience.
 
 The ways to use React features has changed , but not the needs of the applications. Application still need to fire API calls on mount of the components. They still need to respond to state and props changes. That means we need to serve those needs even with hooks.

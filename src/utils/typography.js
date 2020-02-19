@@ -13,6 +13,7 @@ Wordpress2016.overrideThemeStyles = () => {
     h3: {
       fontFamily: "inherit",
       fontWeight: 800,
+      color: "var(--header)",
     },
     "a.gatsby-resp-image-link": {
       boxShadow: "none",
@@ -36,12 +37,24 @@ Wordpress2016.overrideThemeStyles = () => {
       fontSize: "1rem",
     },
     blockquote: {
-      color: "inherit",
+      color: "var(--siteThemeColor)",
       borderLeftColor: "inherit",
       opacity: "0.8",
     },
     "blockquote.translation": {
       fontSize: "1em",
+    },
+    p: {
+      color: "var(--textNormal)",
+    },
+    "header small": {
+      color: "var(--textNormal)",
+    },
+    "h4 a": {
+      color: "var(--header)",
+    },
+    "header h1": {
+      color: "var(--header)",
     },
   }
 }
