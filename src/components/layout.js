@@ -36,7 +36,7 @@ class Layout extends React.Component {
 
     if (location.pathname === rootPath) {
       header = (
-        <h4
+        <h5
           style={{
             ...scale(0.5),
             marginBottom: rhythm(1.5),
@@ -45,7 +45,7 @@ class Layout extends React.Component {
             fontFamily: "Montserrat, sans-serif",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "flex-end",
+            alignItems: "center",
             // textTransform: "none",
           }}
         >
@@ -60,7 +60,7 @@ class Layout extends React.Component {
             {title}
           </Link>
           <ThemeChangeComponent />
-        </h4>
+        </h5>
       )
     } else {
       header = (
@@ -70,7 +70,7 @@ class Layout extends React.Component {
             marginTop: 0,
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "flex-end",
+            alignItems: "center",
           }}
         >
           <Link
