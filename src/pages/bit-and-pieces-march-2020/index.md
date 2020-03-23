@@ -43,13 +43,13 @@ The idea is almost same as other design systems , but this projects also keeps r
 
 Let's see some bits and pieces while doing all that above:
 
-1. Lerna is a great tool. It provides you various commands to execute and run command in all the packages in parallel manner. Once the npm client is yarn, you are using workspaces also. Linking is all taken care by yarn. As weehave a private repo now, we have not seen full potential of yarn yet. It helps in publishing packages a breeze.
+1. Lerna is a great tool. It provides you various commands to execute and run command in all the packages in parallel manner. Once the npm client is yarn and you are using workspaces also, linking is all taken care by yarn. As we have a private repo now, we have not seen full potential of lerna yet.
 
 2)  **yarn** does not allow installing a package and not adding package in package.json. This is ok in most of the cases, but I reached a situation where i needed it badly.
 
 ```
 
-yarn add package --no-save . // ❌
+yarn add package --no-save . // ❌ not available
 
 ```
 
