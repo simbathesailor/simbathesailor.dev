@@ -124,7 +124,7 @@ git clone -b ${tag} git@github.com:yourproject.git --depth 1
 
 16. Did playaround with nodejs child processs while writing build scripts. Very good to have child processes in single threaded world.
 
-17. FileReader is someething which can be used to read the blobs easily.
+17. FileReader is great API to read the blobs easily.
 
 18. There cannot be multiple instances of styled components on the same page. Keep in mind library authors. [Link](https://styled-components.com/docs/faqs#why-am-i-getting-a-warning-about-several-instances-of-module-on-the-page)
 
@@ -132,7 +132,7 @@ git clone -b ${tag} git@github.com:yourproject.git --depth 1
 
 Let's not finish with odd number 😁. Here is the last one.
 
-20. Wrote a docker config and read more about the various command. I am sure, i will forget it. But that is ok, atleast I just understand it at higlevel and can write it again.
+20. Wrote a docker config and read more about the various command. I am sure, i will forget it. But that is ok, atleast I just understand it at high level and can write it again.
 
 Thank you. That's the wrap for now. Stay safe and live in the moment 😄. Hit me up on twitter.
 
