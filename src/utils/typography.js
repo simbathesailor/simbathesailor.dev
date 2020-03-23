@@ -7,10 +7,13 @@ Wordpress2016.overrideThemeStyles = () => {
     a: {
       color: "var(--textLink)",
     },
+    figcaption: {
+      color: "var(--textLink)",
+    },
     hr: {
       background: "var(--hr)",
     },
-    h3: {
+    "h2,h3": {
       fontFamily: "inherit",
       fontWeight: 800,
       color: "var(--header)",
@@ -28,6 +31,7 @@ Wordpress2016.overrideThemeStyles = () => {
     "p code": {
       fontSize: "1rem",
     },
+
     // TODO: why tho
     "h1 code, h2 code, h3 code, h4 code, h5 code, h6 code": {
       fontSize: "inherit",
@@ -55,6 +59,9 @@ Wordpress2016.overrideThemeStyles = () => {
     },
     "header h1": {
       color: "var(--header)",
+    },
+    ol: {
+      color: "var(--textNormal)",
     },
   }
 }
