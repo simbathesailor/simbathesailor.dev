@@ -31,15 +31,15 @@ I have been working mainly on setting up a component, utilities and hooks librar
 
 The idea is almost same as other design systems , but this projects also keeps react hooks and utilities. Also we did not have private npm repos(for now). so consuming it was a challenge. We made use of following tools to set it up:
 
-1.  **[Lerna](<[https://github.com/lerna/lerna](https://github.com/lerna/lerna)>)**: For creating or project mono-repo and fine linking of packages.
+1.  **[Lerna](https://github.com/lerna/lerna)**: For creating or project mono-repo and fine linking of packages.
 
-2.  **[tsdx](<[https://github.com/jaredpalmer/tsdx](https://github.com/jaredpalmer/tsdx)>)** : Thanks to [Jared Palmer](<[https://twitter.com/jaredpalmer](https://twitter.com/jaredpalmer)>) and the team for wonderful package which eases the library development with react and typescript.
+2.  **[tsdx](https://github.com/jaredpalmer/tsdx)** : Thanks to [Jared Palmer](https://twitter.com/jaredpalmer) and the team for wonderful package which eases the library development with react and typescript.
 
-3.  **[styled components](<[https://styled-components.com/](https://styled-components.com/)>)**. made use of easy deterministic styles and dumb components out of the box.
+3.  **[styled components](https://styled-components.com)**. made use of easy deterministic styles and dumb components out of the box.
 
-4.  **[styled-system](<[https://styled-system.com/](https://styled-system.com/)>)**. Used for constraint based component development . This was very much needed for enforcing design systems for every one.
+4.  **[styled-system](https://styled-system.com/)**. Used for constraint based component development . This was very much needed for enforcing design systems for every one.
 
-5.  **[storybook](<[https://storybook.js.org/](https://storybook.js.org/)>)**: For writing stories for out components, hooks and libraries.
+5.  **[storybook](https://storybook.js.org/)**: For writing stories for out components, hooks and libraries.
 
 Let's see some bits and pieces while doing all that above:
 
