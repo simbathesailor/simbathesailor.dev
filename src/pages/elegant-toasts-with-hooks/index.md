@@ -2,7 +2,7 @@
 title: Elegant toasts with hooks
 date: 2020-05-05T16:27:25.728Z
 tags: patterns,react-hook,usecallback,useref
-published: "true"
+published: "false"
 description: Build a minimalistic toast component which just works
 ---
 
