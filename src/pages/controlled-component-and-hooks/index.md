@@ -1,15 +1,20 @@
 ---
-title: Controlled components with React hooks
-date: 2020-06-18T20:38:36.228Z
+title: Controlled components with React hooks (Work in progress)
+date: 2020-06-18T16:38:25.728Z
 tags: patterns,react-hook,usecallback,useref
-published: "false"
-description: We have hooks now. Let's see how it benefits the way how
-we are writing controlled components today.
+published: "true"
+description: We have hooks now , Let's see how it benefits the way how we are write controlled components today.
 ---
 
-![Photo by Mark Rabe on Unsplash](https://images.unsplash.com/photo-1502780809386-f4ed7a4a4c59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)
+![Photo by Bruno van der Kraan](https://images.unsplash.com/photo-1519819850695-afeaed86c0a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80)
 
-The other day I was working on a controlled component and I want to debounce certain actions and not debounce certain actions at the same time in useEffect. I start wondering , Can we have a debounced effect ?
+I love controlled components. Do you ?. Such a cliche question, but anyways let's talk about controlled components with hooks. They make your components flexible. They also help you keep single source of truth for your component's data.
+
+You never want to mix controlled and uncontrolled components. More on this at [React controlled vs uncontrolled](https://reactjs.org/docs/glossary.html#controlled-vs-uncontrolled-components).
+
+Controlled components are better when thinking in terms of react mindset. That way you don't think about the UI updates. React gives you the guarantee that UI shown to you is insync with the data in almost all the cases.
+
+<!-- The other day I was working on a controlled component and I want to debounce certain actions and not debounce certain actions at the same time in useEffect. I start wondering , Can we have a debounced effect ?
 While answering this question in my mind, I went through few ideas which are good in their respective scenarios. Now I think it is worth sharing all those ideas and a debounced effect itself that I was able to write finally.
 
 Let's see the problem at hand and then we will see various approaches to solve it.
@@ -152,4 +157,4 @@ So the method 2 is the most right solution at this point in time but not the ele
 
 Thank you guys, if you are still with me 😄 !! Has any one of you have tried writing a debounced hook ?. Were you able to do it ?. If yes Please share and if not still share any problems with react hooks. Hit me up on twitter.
 
-https://twitter.com/simbatheesailor
+https://twitter.com/simbatheesailor -->

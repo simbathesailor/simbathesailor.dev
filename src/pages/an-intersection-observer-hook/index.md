@@ -7,6 +7,7 @@ description: This article implements intersection observer hook.
 ---
 
 ![Intersection observer](./coverpage.png)
+
 [Image built using Excalidraw](https://excalidraw.com/)
 
 **Have you guys heard about intersection observer ?**. It' a cool web technology which allow us to observe the element on any page efficiently. It has a great browser support and [polyfill](https://github.com/w3c/IntersectionObserver) is also there. In this article, I am going to explain intersection observer and a hook based on it.

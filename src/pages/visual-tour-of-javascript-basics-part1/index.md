@@ -7,6 +7,7 @@ description: A visual article explaining javascript basics.
 ---
 
 ![](./cover.png)
+
 So I have been writing javascript for over three years. I have certain visualizations of javascript concepts in my head. I want to share those visualizations with everyone. **There are primarily two goals:**
 
 **1.** Making it helpful for other developers to visualize.
