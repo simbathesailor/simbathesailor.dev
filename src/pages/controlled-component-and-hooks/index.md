@@ -1,5 +1,5 @@
 ---
-title: Controlled components with React hooks (Work in progress)
+title: Controlled components with React hooks (WIP)
 date: 2020-06-18T16:38:25.728Z
 tags: patterns,react-hook,usecallback,useref
 published: "true"
