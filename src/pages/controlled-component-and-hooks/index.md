@@ -3,7 +3,7 @@ title: Controlled components with React hooks (WIP)
 date: 2020-06-18T16:38:25.728Z
 tags: patterns,react-hook,usecallback,useref
 published: "true"
-description: We have hooks now , Let's see how it benefits the way how we are write controlled components today.
+description: We have hooks now , Let's see how it benefits the way we write controlled components today.
 ---
 
 ![Photo by Bruno van der Kraan](https://images.unsplash.com/photo-1519819850695-afeaed86c0a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80)
