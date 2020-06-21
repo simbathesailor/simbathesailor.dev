@@ -1,5 +1,5 @@
 ---
-title: Controlled components with React hooks (WIP)
+title: Controlled components with React hooks
 date: 2020-06-18T16:38:25.728Z
 tags: patterns,react-hook,usecallback,useref
 published: "true"
@@ -8,153 +8,92 @@ description: We have hooks now , Let's see how it benefits the way we write cont
 
 ![Photo by Bruno van der Kraan](https://images.unsplash.com/photo-1519819850695-afeaed86c0a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80)
 
-I love controlled components. Do you ?. Such a cliche question, but anyways let's talk about controlled components with hooks. They make your components flexible. They also help you keep single source of truth for your component's data.
+I love controlled components. Do you ?. Such a cliche question, but anyways let's talk about controlled components with hooks.
 
-You never want to mix controlled and uncontrolled components. More on this at [React controlled vs uncontrolled](https://reactjs.org/docs/glossary.html#controlled-vs-uncontrolled-components).
+They make your components flexible. They also help you keep single source of truth for your component's data.
 
-Controlled components are better when thinking in terms of react mindset. That way you don't think about the UI updates. React gives you the guarantee that UI shown to you is insync with the data in almost all the cases.
+You never want to mix controlled and uncontrolled components. More on this here [React controlled vs uncontrolled](https://reactjs.org/docs/glossary.html#controlled-vs-uncontrolled-components).
 
-<!-- The other day I was working on a controlled component and I want to debounce certain actions and not debounce certain actions at the same time in useEffect. I start wondering , Can we have a debounced effect ?
-While answering this question in my mind, I went through few ideas which are good in their respective scenarios. Now I think it is worth sharing all those ideas and a debounced effect itself that I was able to write finally.
+Controlled components are better when thinking in react mindset. That way you don't have to think about the UI updates. React gives you the guarantee that UI shown to you is in-sync with your data in almost all the cases.
 
-Let's see the problem at hand and then we will see various approaches to solve it.
+But creating controlled components and consuming them everytime, comes up with the some tradeoffs. You orchestrate the data in one of the higher components that renders a controlled component. Don't worry if the prior lines were a bit confusing . Let's understand this with a diagram
 
-`gist:simbathesailor/709974316e8268b195fece9bc95a561c`
+![Problem Visual Image](./example2.svg)
 
-Notice above **App** and **ChildComponent**. The input in child is dependent on the parent component for it's value. We call it as [Controlled component](https://reactjs.org/docs/forms.html#controlled-components). Some people must be thinking why I have to keep the value in parent component? Why I can't keep it in Child Component. The answer is , these scenarios are pretty common in all real world applications. For example, I had the following case:
+In the diagram we have one modal having a search box and a result section. There are two data points here:
 
-The input value was kept in Redux store, because it is used at other locations in app to determine certain behaviour. That's where I started thinking about a debounced effect.
+1. Search value in input.
+2. The data item array which is used to render cards.
 
-Hence an example based on controlled components.
+This kind of modal having similar search and results is needed at multiple locations in our application.
 
-Notice few things above.
+And every place the post search logic varies. And once you have result with you, there are different logic post that. At few places you also need to set the search value programatically, on some updates.
 
-**1.** OnChange function need to do two things.
+Now this is definitely a made up situation here. But this scenario is so common in real applications.
 
-**2.** A non-debounced change which changes the value. It can't be debounced. Making it debounced will stop the values to reflect in the input as it is a controlled component.
+To keep this UI completely re-useable, we will go for controlled components, rememeber I told you that I love controlled components and by now you I can assume, that you love it too.
 
-**3.** A debounced change. In the above example we are just logging something but in real application it can be anything e.g making api call, updating filter e.t.c. That has to be debounced for the performance sake.
-
-Here is an image showing the visual representation of what's going on here. Made with [excalidraw](https://www.excalidraw.com). Quite smiple and amazing to use.
-
-![Problem Visual Image](./debouncedeffectdraw1.png)
-
-### First Try :
-
-`gist:simbathesailor/fe73dc6cefd6f59d50730bd65e9bacfa`
-
-Notice above our **makeApiCallRaw** is not dependent on any thing in the component and its all good to pull the function outside of the component. In this case the makeApiCallRow will be debounced.
-
-But as you must be thinking this is not always possible to do. And you are right.
-
-So let's try 2nd approach.
-
-### Second Try
-
-`gist:simbathesailor/1d00a0ac510b3577b9c6e5eb6c458569`
-
-Notice we bring in **debouncedmakeApiCall** inside the **ChildComponent**. We are making use of useCallback to persist the reference of function intact across rerender. And it works correctly. Checkout this codepen link.
-
-https://codepen.io/stack26/pen/qBExgGV?editors=1011
-
-But this approach is more or less same as the first one. If you can do this method, you can very well
-do the first method. With the useCallback and blank dependency, the closure is going to get created only once for the callback passed. It means the returned value from useCallback function will return same function reference across rerender.
+Let's try to write component hierarchy for this situation.
 
 ```jsx
-const returnedCallback = React.useCallback(() => {}, [])
-// returnedCallback will point to same function, until the component unmounts
+<AnyofyourComponent>
+  <SearchAndResultView>
+    <Modal>
+      <SearchBox />
+      <ResultContainer />
+    </SearchAndResultView>
+  </Modal>
+</AnyofyourComponent>
 ```
 
-If the debouncedmakeApiCall is dependent on any other value (e.g props, any variable in scope), the new values will not get reflected while the debounce function runs.
+This will be the rough hierarchy, we will talk in rest of the article
 
-```jsx
-const returnedCallback = React.useCallback(value => {
-  // using some value available in the scope
-  makeApiCallRaw(value, someValueFromOuterScope)
-}, [])
-```
+I will not go very deep into controlled component. But let me give you some understanding about it.
 
-Now someValueFromOuterScope will keep on referring to its initial value across rerender. To see this case, lets add something to our callback as dependency and see the results. We only have **value** variable available in outside scope. So let's add it.
+> **Controlled components** keeps the control of data with React. They rely on React to update UI in-sync with the data available to the component.
 
-https://codepen.io/stack26/pen/MWYQxVo?editors=1111
+Read more about it here [Controlled components](https://reactjs.org/docs/forms.html#controlled-components)
 
-Notice how the effect runs for all the value changes.
-It is definitely something which we don't want to happen.
+And then there are **uncontrolled components**. which takes matter into their own hand. They imperatively change the rendered result properties. [Uncontrolled components](https://reactjs.org/docs/uncontrolled-components.html#gatsby-focus-wrapper)
 
-> So what approach should be followed?. The second approach looks quite useful ,but has the problem of changing its reference for every run.
+There is one more way to see at uncontrolled components. Now let's say you have a component which keeps the data with itself and the parent does not have access to it. The child component itself is in control of data and the parent can't essentially change the child component's state. In this scenario, the child component is not designed in a way where you can control on the outcomes in the child component and it will also hamper the reusability. Opposite of it is controlled component
 
-One way we can do is to remove all the dependencies from dependencies array and pass all of them as the arguments to the debounce function. We solve both the issues.
+So in our case, if the the search state and result state is with the the SearchAndResultView component, it becomes a uncontrolled component.
 
-**1.** The reference to the function will remain persisted across rerender.
+But if the values needed to render the SearchAndResultView are coming from the parent component, we get a controlled component.
 
-**2.** The debounce function will be getting all the latest values. No stale data and no closure issues.
+---
 
-Here is the running code example.
+Let's see how a parent component will use this child component.
 
-https://codepen.io/stack26/pen/QWwmoEL?editors=1011
+`gist:simbathesailor/43c67b031a14297c19bbe7e21d9f4c76`
 
-Notice **debouncedmakeApiCall** is dependent completely on arguments for latest values.
+Note: There are better way of organizing the current component hierarchy, but let's focus on only the controlled component stuff.
 
-But then, Is it always possible ? So far , it worked out for me. But still it brings in lot more verbosity, if the callback is dependent on many values in the function scope.
+Notice, what all we needed to do to make use of SearchAndResultView.
 
-### Third Try
+We have to have two states , one for search and one for result. In some scenarios, these kind of definitions becomes so big and scattered. Next time you try to use the component, it eats away your whole time
 
-> Can we have a **debounced useEffect** ?
+We have to do similar kind of thing everywhere we are using this SearchAndResultView component.
 
-The API can be very similar to useEffect plus some debounce specific arguments.
+This is how fundamentally controlled compoents system works in reactjs. There is nothing wrong about it. But, Can we remove this repeated work ?
 
-```jsx
-useDebouncedEffect(callback, dependencyArr, debounceTimeout[number], {
-  trailing: [boolean],
-  leading: [boolean],
-})
-```
+Yes we can, that's why this blog 😄
 
-It can be very handy and prevent all those arguments passing and reference maintainance hustles. Any thing available in scope should be available having expected values.
+---
 
-Let's try this. First let me explain you the idea which has been used.
+Now let's observe the below snippet
 
-So useEffect only run again when dependency list changes.
+`gist:simbathesailor/0bbc238a248fd58f10fb9209a0ceaa0b`
 
-> What if we can debounce the changes
-> to the dependency list ?
+Notice, how the statments for defining states are now moved to **useSetup** hook. Now , every component that want to use the SearchAndResultView doesn't have to write the state definitions first to use the controlled component.
 
-If we are able to do so , we should be able to debounce the useEffect callback run also.
+They can make use of controlled component's **setupHook**
 
-Yes friends. The hook we are going to write is just based on this idea. Below is the complete code.
+This way of writing controlled components have surprisingly improved my experience of working with controlled components. It's a simple , but yet powerful way of writing components in Reactjs. This could not have been possible without React hooks.
 
-`gist:simbathesailor/aff2228f05e2db0117314cf9329477a9`
+You have complete control to change the value of SearchAndResultView component anytime you like. This way we have all the controlled component benefits and also the ease of use.
 
-**1** Line 9 : we are just keeping a local reference of dependency passed. The change to local \_dependency is debounced
+Thanks
 
-**2** Line 24 - 28 : We are just calling the with depnency array which is nothing but dependency itself. Whenever any element in the dependency changes, the effect runs it's callback.
-
-**3** Line 12 - 22: we are making use of the same approach we talked in Try 2. Making use of callback and making sure the reference to the makeChangeTodependency remains constant across rerender.
-
-Here is the working codepen link:
-
-https://codepen.io/stack26/pen/YzPeojM?editors=0111
-
-Start typing in the input box and see the useDebouncedEffect running after 2, 3 and 5 seconds.
-
-**Check the logs in dev tools for the output**
-
-**But there is one problem, have you noticed it ?**
-
-The first run of callbacks is not debounced. They just run without 2, 3 and 5 second wait for the first time.
-
-This can be unacceptable at certain scenarios. But I think this should be managable by adding checks.
-
-> Why it ran for the first time ?
-
-Because we cannot debounce the first run.
-
-For not running in the first run, we can add checks to our custom hook but remember the hooks cannot be used inside conditional. They have to be used only at the first level in function.
-
-Although, we were able to write a debounced hook, it has it's own shortcoming. Dependending on the scenario it can be useful. I think the last approach can be little non-deterministic to work at times in terms of debugging. 2nd approach is more deterministic. But still I don't like the verbosity of second approach. I think I have to agree with this tradeoffs involved.
-
-So the method 2 is the most right solution at this point in time but not the elegant solution atleast for me.
-
-Thank you guys, if you are still with me 😄 !! Has any one of you have tried writing a debounced hook ?. Were you able to do it ?. If yes Please share and if not still share any problems with react hooks. Hit me up on twitter.
-
-https://twitter.com/simbatheesailor -->
+- [Anil Chaudhary](https://twitter.com/simbatheesailor)
