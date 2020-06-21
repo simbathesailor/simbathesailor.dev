@@ -16,24 +16,23 @@ You never want to mix controlled and uncontrolled components. More on this here 
 
 Controlled components are better when thinking in react mindset. That way you don't have to think about the UI updates. React gives you the guarantee that UI shown to you is in-sync with your data in almost all the cases.
 
-But creating controlled components and consuming them everytime, comes up with the some tradeoffs. You orchestrate the data in one of the higher components that renders a controlled component. Don't worry if the prior lines were a bit confusing . Let's understand this with a diagram
+But creating controlled components and consuming them every time, comes up with some tradeoffs. You orchestrate the data in one of the higher components that renders a controlled component. Don't worry if the prior lines were a bit confusing. Let's understand this with a diagram
 
 ![Problem Visual Image](./example2.svg)
 
-In the diagram we have one modal having a search box and a result section. There are two data points here:
-
-1. Search value in input.
-2. The data item array which is used to render cards.
+In the diagram, we have one modal having a search box and a result section. There are two data points here:
+Search value in the input.
+The data item array which is used to render cards.
 
 This kind of modal having similar search and results is needed at multiple locations in our application.
 
-And every place the post search logic varies. And once you have result with you, there are different logic post that. At few places you also need to set the search value programatically, on some updates.
+And every place the post search logic varies. And once you have results with you, there are different logic post that. A few places you also need to set the search value programmatically, on some updates.
 
-Now this is definitely a made up situation here. But this scenario is so common in real applications.
+Now, this is definitely a made-up situation here. But this scenario is so common in real applications.
 
-To keep this UI completely re-useable, we will go for controlled components, rememeber I told you that I love controlled components and by now you I can assume, that you love it too.
+To keep this UI completely re-useable, we will go for controlled components, remember I told you that I love controlled components and by now I can assume, that you love it too.
 
-Let's try to write component hierarchy for this situation.
+Let's try to write a component hierarchy for this situation.
 
 ```jsx
 <AnyofyourComponent>
@@ -56,10 +55,9 @@ Read more about it here [Controlled components](https://reactjs.org/docs/forms.h
 
 And then there are **uncontrolled components**. which takes matter into their own hand. They imperatively change the rendered result properties. [Uncontrolled components](https://reactjs.org/docs/uncontrolled-components.html#gatsby-focus-wrapper)
 
-There is one more way to see at uncontrolled components. Now let's say you have a component which keeps the data with itself and the parent does not have access to it. The child component itself is in control of data and the parent can't essentially change the child component's state. In this scenario, the child component is not designed in a way where you can control on the outcomes in the child component and it will also hamper the reusability. Opposite of it is controlled component
+There is one more way to see uncontrolled components. Now let's say you have a component that keeps the data with itself and the parent does not have access to it. The child component itself is in control of data and the parent can't essentially change the child component's state. In this scenario, the child component is not designed in a way where you can control the outcomes in the child component and it will also hamper the reusability. Opposite of it is controlled component.
 
-So in our case, if the the search state and result state is with the the SearchAndResultView component, it becomes a uncontrolled component.
-
+So in our case, if the search state and result state is with the SearchAndResultView component, it becomes an uncontrolled component.
 But if the values needed to render the SearchAndResultView are coming from the parent component, we get a controlled component.
 
 ---
@@ -68,15 +66,15 @@ Let's see how a parent component will use this child component.
 
 `gist:simbathesailor/43c67b031a14297c19bbe7e21d9f4c76`
 
-Note: There are better way of organizing the current component hierarchy, but let's focus on only the controlled component stuff.
+Note: There are better ways of organizing the current component hierarchy, but let's focus on only the controlled component stuff.
 
 Notice, what all we needed to do to make use of SearchAndResultView.
 
-We have to have two states , one for search and one for result. In some scenarios, these kind of definitions becomes so big and scattered. Next time you try to use the component, it eats away your whole time
+We have to have two states, one for search and one for the result. In some scenarios, these kinds of definitions become so big and scattered. Next time you try to use the component, it eats away your whole time
 
-We have to do similar kind of thing everywhere we are using this SearchAndResultView component.
+We have to do a similar kind of thing everywhere we are using this SearchAndResultView component.
 
-This is how fundamentally controlled compoents system works in reactjs. There is nothing wrong about it. But, Can we remove this repeated work ?
+This is how fundamentally controlled components system works in reactjs. There is nothing wrong with it. But, Can we remove this repeated work?
 
 Yes we can, that's why this blog 😄
 
@@ -86,13 +84,13 @@ Now let's observe the below snippet
 
 `gist:simbathesailor/0bbc238a248fd58f10fb9209a0ceaa0b`
 
-Notice, how the statments for defining states are now moved to **useSetup** hook. Now , every component that want to use the SearchAndResultView doesn't have to write the state definitions first to use the controlled component.
+Notice, how the statements for defining states are now moved to **useSetup** hook. Now, every component that wants to use the SearchAndResultView doesn't have to write the state definitions first to use the controlled component.
 
-They can make use of controlled component's **setupHook**
+They can make use of the controlled component's useSetup Hook
 
-This way of writing controlled components have surprisingly improved my experience of working with controlled components. It's a simple , but yet powerful way of writing components in Reactjs. This could not have been possible without React hooks.
+This way of writing controlled components have surprisingly improved my experience of working with controlled components. It's a simple, but yet powerful way of writing components in Reactjs. This could not have been possible without React hooks.
 
-You have complete control to change the value of SearchAndResultView component anytime you like. This way we have all the controlled component benefits and also the ease of use.
+You have complete control to change the value of the SearchAndResultView component anytime you like. This way we have all the controlled component benefits and also the ease of use.
 
 Thanks
 
