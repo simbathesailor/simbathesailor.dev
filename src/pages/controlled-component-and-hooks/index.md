@@ -92,6 +92,8 @@ This way of writing controlled components have surprisingly improved my experien
 
 You have complete control to change the value of the SearchAndResultView component anytime you like. This way we have all the controlled component benefits and also the ease of use.
 
+Liked this article , then please checkout my other articles.
+
 Thanks
 
 - [Anil Chaudhary](https://twitter.com/simbatheesailor)
