@@ -73,7 +73,7 @@ Secondly we need to export the `toggleModal` from `ModalFromOutsideReact`. See t
 
 Now, you are all set to trigger the modal from anywhere in the app, be it React component, non-react codebases like fetch wrappers, utils e.t.c.
 
-You are not forced to go through all your component render cycle to show a modal. you can decalaritively do that now.
+You are not forced to go through all your component render cycle to show a modal. you can declaratively do that now.
 
 This example is pretty basic and can be improved a lot. But the core idea was to demonstrate the how's of interaction between react and non react world.
 
