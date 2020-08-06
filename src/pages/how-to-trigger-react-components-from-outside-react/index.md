@@ -1,6 +1,6 @@
 ---
 title: Talk to React components from outside React
-date: 2020-08-06T16:27:25.728Z
+date: 2020-08-06T23:30:25.728Z
 tags: patterns,react-hook,usecallback,useref
 published: "true"
 description: How to trigger react component from outside React in a React App
