@@ -11,6 +11,7 @@ class BlogIndex extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
+    console.log("BlogIndex -> render -> posts", posts)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -30,10 +31,17 @@ class BlogIndex extends React.Component {
                     marginBottom: rhythm(1 / 4),
                   }}
                 >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                    {title}
-                  </Link>
+                  {node.frontmatter.featuredImage &&
+                    node.frontmatter.featuredImage.publicURL && (
+                      <img
+                        src={node.frontmatter.featuredImage.publicURL}
+                        alt=""
+                      />
+                    )}
                 </h3>
+                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                  {title}
+                </Link>
                 <small>{node.frontmatter.date}</small>
               </header>
               <section>
@@ -72,6 +80,9 @@ export const pageQuery = graphql`
             title
             description
             published
+            featuredImage {
+              publicURL
+            }
           }
         }
       }
