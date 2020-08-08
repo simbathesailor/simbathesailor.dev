@@ -1,4 +1,7 @@
+/** @jsx jsx */
+
 import React from "react"
+import { jsx, Context, useThemeUI } from "theme-ui"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -15,7 +18,11 @@ function BlogIndex(props) {
   const posts = data.allMarkdownRemark.edges
   console.log("BlogIndex -> render -> posts", posts)
   console.log("useResize", useResize)
-  useResize()
+  // const t = React.useContext(Context)
+  // console.log("BlogIndex ->  t", t)
+  const v = useThemeUI()
+  console.log("BlogIndex ->  v", v)
+
   return (
     <Layout location={props.location} title={siteTitle}>
       <SEO title="All posts" />

@@ -11,6 +11,7 @@ module.exports = {
   pathPrefix: "/",
   plugins: [
     "gatsby-plugin-dark-mode",
+    "gatsby-plugin-theme-ui",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
