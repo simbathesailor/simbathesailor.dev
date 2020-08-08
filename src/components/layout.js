@@ -1,6 +1,8 @@
+/** @jsx jsx */
+
 import React from "react"
 import { Link } from "gatsby"
-import { ThemeProvider, useThemeUI, useColorMode } from "theme-ui"
+import { ThemeProvider, useThemeUI, useColorMode, jsx } from "theme-ui"
 import theme from "../gatsby-plugin-theme-ui"
 
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
@@ -94,39 +96,19 @@ function Layout(props) {
     )
   }
 
-  // margin-left: auto;
-  // margin-right: auto;
-  // max-width: 52rem;
-  // /* padding-left: 1rem; */
-  // /* padding-right: 1rem; */
-  // padding: 2.625rem 1.3125rem;
   return (
-    <ThemeProvider
-      theme={{
-        ...theme,
-        styles: {
-          p: {
-            modes: {
-              dark: {
-                color: "#fff",
-              },
-              light: {
-                color: " #000",
-              },
-            },
-          },
-          a: {
-            color: "#00adb5",
-          },
-        },
-      }}
-    >
+    <ThemeProvider theme={theme}>
       <div
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+
+          // maxWidth: rhythm(24),
+          // padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+        }}
+        sx={{
+          maxWidth: "700px",
+          padding: "2",
         }}
       >
         <header>{header}</header>

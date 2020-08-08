@@ -1,21 +1,41 @@
-export default {
+import { toTheme } from "@theme-ui/typography"
+import wordpress2016 from "typography-theme-wordpress-2016"
+import merge from "lodash.merge"
+
+const typography = toTheme(wordpress2016)
+
+delete wordpress2016.googleFonts
+
+export default merge(typography, {
   colors: {
-    text: "inherit",
-    background: "bg",
+    text: "#fff",
+
+    primary: "#00adb5",
+
     modes: {
       dark: {
         text: "#fff",
         background: "#282c35",
-        primary: "#0cf",
       },
       light: {
         text: "#000",
         background: "#fff",
-        primary: "#0cf",
       },
     },
   },
-}
+  styles: {
+    a: {
+      color: "red",
+    },
+    root: {
+      fontFamily: " Montserrat, sans-serif",
+    },
+  },
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
+  sizes: [4, 8, 12, 16, 20, 24, 28, 32, 36],
+  space: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68],
+  breakpoints: ["40em", "56em", "64em"],
+})
 
 export const darkTheme = {
   colors: {

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import React from "react"
-import { jsx, Context, useThemeUI } from "theme-ui"
+// import React from "react"
+import { jsx, useThemeUI } from "theme-ui"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -27,7 +27,13 @@ function BlogIndex(props) {
     <Layout location={props.location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
-      <div>
+      <div
+        sx={{
+          display: "grid",
+          gridTemplateColumns: ["100%"],
+          gridColumnGap: "5",
+        }}
+      >
         {posts.map(({ node }) => {
           const { published } = node.frontmatter
           const title = node.frontmatter.title || node.fields.slug
