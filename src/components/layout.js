@@ -87,6 +87,13 @@ class Layout extends React.Component {
         </h4>
       )
     }
+
+    // margin-left: auto;
+    // margin-right: auto;
+    // max-width: 52rem;
+    // /* padding-left: 1rem; */
+    // /* padding-right: 1rem; */
+    // padding: 2.625rem 1.3125rem;
     return (
       <div
         style={{

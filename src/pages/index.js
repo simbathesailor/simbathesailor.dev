@@ -3,20 +3,24 @@ import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
+import { useResize } from "../hooks"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
-    console.log("BlogIndex -> render -> posts", posts)
+// useResize()
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
+function BlogIndex(props) {
+  const { data } = props
+  const siteTitle = data.site.siteMetadata.title
+  const posts = data.allMarkdownRemark.edges
+  console.log("BlogIndex -> render -> posts", posts)
+  console.log("useResize", useResize)
+  useResize()
+  return (
+    <Layout location={props.location} title={siteTitle}>
+      <SEO title="All posts" />
+      <Bio />
+      <div>
         {posts.map(({ node }) => {
           const { published } = node.frontmatter
           const title = node.frontmatter.title || node.fields.slug
@@ -25,25 +29,42 @@ class BlogIndex extends React.Component {
           }
           return (
             <article key={node.fields.slug}>
-              <header>
-                <h3
+              <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <header
                   style={{
-                    marginBottom: rhythm(1 / 4),
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
-                  {node.frontmatter.featuredImage &&
-                    node.frontmatter.featuredImage.publicURL && (
-                      <img
-                        src={node.frontmatter.featuredImage.publicURL}
-                        alt=""
-                      />
-                    )}
-                </h3>
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-                <small>{node.frontmatter.date}</small>
-              </header>
+                  <h3
+                    style={{
+                      marginBottom: rhythm(1 / 4),
+                    }}
+                  >
+                    {node.frontmatter.featuredImage &&
+                      node.frontmatter.featuredImage.publicURL && (
+                        <img
+                          src={node.frontmatter.featuredImage.publicURL}
+                          alt=""
+                        />
+                      )}
+                  </h3>
+
+                  <Link
+                    style={{
+                      boxShadow: `none`,
+                      boxShadow: "none",
+                      fontSize: "1.5rem",
+                      fontWeight: "bold",
+                    }}
+                    to={node.fields.slug}
+                  >
+                    {title}
+                  </Link>
+
+                  <small>{node.frontmatter.date}</small>
+                </header>
+              </Link>
               <section>
                 <p
                   dangerouslySetInnerHTML={{
@@ -54,9 +75,9 @@ class BlogIndex extends React.Component {
             </article>
           )
         })}
-      </Layout>
-    )
-  }
+      </div>
+    </Layout>
+  )
 }
 
 export default BlogIndex
