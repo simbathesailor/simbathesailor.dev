@@ -4,4 +4,4 @@ import "typeface-montserrat"
 
 require("prismjs/themes/prism-tomorrow.css")
 
-require("./src/utils/global.css")
+// require("./src/utils/global.css")

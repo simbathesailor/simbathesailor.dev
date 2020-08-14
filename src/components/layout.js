@@ -5,13 +5,12 @@ import { Link } from "gatsby"
 import { ThemeProvider, useThemeUI, useColorMode, jsx } from "theme-ui"
 import theme from "../gatsby-plugin-theme-ui"
 
-import { ThemeToggler } from "gatsby-plugin-dark-mode"
 // import { createTheming } from "@callstack/react-theme-provider"
 import NightIcon from "../assets/night-icon.png"
 import MorningIcon from "../assets/morning-icon.png"
 import { useResize } from "../hooks"
 
-import { rhythm, scale } from "../utils/typography"
+// import { rhythm, scale } from "../utils/typography"
 
 // const { ThemeProvider, withTheme, useTheme } = createTheming({})
 
@@ -46,8 +45,8 @@ function Layout(props) {
     header = (
       <h5
         style={{
-          ...scale(0.5),
-          marginBottom: rhythm(1.5),
+          // ...scale(0.5),
+          marginBottom: "5px",
           marginTop: 0,
           textTransform: "uppercase",
           fontFamily: "Montserrat, sans-serif",
@@ -113,7 +112,7 @@ function Layout(props) {
       >
         <header>{header}</header>
         <main>{children}</main>
-        <footer style={{ color: "var(--header)" }}>
+        <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>

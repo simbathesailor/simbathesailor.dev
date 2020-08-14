@@ -1,21 +1,22 @@
 /** @jsx jsx */
 
 // import React from "react"
-import { jsx, useThemeUI } from "theme-ui"
+import { jsx, useThemeUI, Styled } from "theme-ui"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import { useResize } from "../hooks"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+// import { rhythm } from "../utils/typography"
 
 // useResize()
 
+const Img = Styled.img
 function BlogIndex(props) {
   const { data } = props
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
   console.log("BlogIndex -> render -> posts", posts)
   console.log("useResize", useResize)
   // const t = React.useContext(Context)
@@ -36,13 +37,13 @@ function BlogIndex(props) {
       >
         {posts.map(({ node }) => {
           const { published } = node.frontmatter
-          const title = node.frontmatter.title || node.fields.slug
+          const title = node.frontmatter.title || node.slug
           if (published === "false") {
             return null
           }
           return (
-            <article key={node.fields.slug}>
-              <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+            <article key={node.slug}>
+              <Link style={{ boxShadow: `none` }} to={node.slug}>
                 <header
                   style={{
                     display: "flex",
@@ -50,13 +51,16 @@ function BlogIndex(props) {
                   }}
                 >
                   <h3
-                    style={{
-                      marginBottom: rhythm(1 / 4),
-                    }}
+                    style={
+                      {
+                        // marginBottom: rhythm(1 / 4),
+                      }
+                    }
                   >
                     {node.frontmatter.featuredImage &&
                       node.frontmatter.featuredImage.publicURL && (
-                        <img
+                        <Img
+                          // sx={{}}
                           src={node.frontmatter.featuredImage.publicURL}
                           alt=""
                         />
@@ -70,7 +74,7 @@ function BlogIndex(props) {
                       fontSize: "1.5rem",
                       fontWeight: "bold",
                     }}
-                    to={node.fields.slug}
+                    to={node.slug}
                   >
                     {title}
                   </Link>
@@ -102,13 +106,12 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
-          fields {
-            slug
-          }
+          slug
+
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title

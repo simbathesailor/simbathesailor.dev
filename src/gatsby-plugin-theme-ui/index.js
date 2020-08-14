@@ -24,11 +24,14 @@ export default merge(typography, {
     },
   },
   styles: {
-    a: {
+    "h5 a": {
       color: "red",
     },
+    img: {
+      width: "100%",
+    },
     root: {
-      fontFamily: " Montserrat, sans-serif",
+      fontFamily: "Montserrat, sans-serif",
     },
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],

@@ -9,6 +9,7 @@ import { rhythm, scale } from "../utils/typography"
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
+    console.log("BlogPostTemplate -> render -> this.props", this.props)
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
@@ -22,7 +23,7 @@ class BlogPostTemplate extends React.Component {
           <header>
             <h1
               style={{
-                marginTop: rhythm(1),
+                // marginTop: rhythm(1),
                 marginBottom: 0,
               }}
             >
@@ -30,9 +31,9 @@ class BlogPostTemplate extends React.Component {
             </h1>
             <p
               style={{
-                ...scale(-1 / 5),
+                // ...scale(-1 / 5),
                 display: `block`,
-                marginBottom: rhythm(1),
+                // marginBottom: rhythm(1),
               }}
             >
               {post.frontmatter.date}
@@ -48,9 +49,11 @@ class BlogPostTemplate extends React.Component {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
           <hr
-            style={{
-              marginBottom: rhythm(1),
-            }}
+            style={
+              {
+                // marginBottom: rhythm(1),
+              }
+            }
           />
           <footer>
             <Bio />
@@ -97,7 +100,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(slug: { eq: $slug }) {
       id
       excerpt(pruneLength: 160)
       html
