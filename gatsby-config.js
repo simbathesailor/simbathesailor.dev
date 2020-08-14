@@ -21,62 +21,62 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [".md", ".mdx"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+            },
+          },
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              // Optional:
+
+              // the github handler whose gists are to be accessed
+              username: "weirdpattern",
+
+              // a flag indicating whether the github default gist css should be included or not
+              // default: true
+              includeDefaultCss: true,
+            },
+          },
+          {
+            resolve: `gatsby-remark-relative-images`,
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 400,
+              wrapperStyle: `margin-bottom: 1.0725rem;display:block;margin: 0px auto;`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          "gatsby-remark-autolink-headers",
+
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true,
+            },
+          },
+          `gatsby-remark-copy-linked-files`,
+          // {
+          //   reslove: `gatsby-remark-copy-linked-files`,
+          //   options: {
+          //     ignoreFileExtensions: [],
+          //   },
+          // },
+
+          `gatsby-remark-smartypants`,
+          "gatsby-remark-embedder",
+        ],
       },
-      gatsbyRemarkPlugins: [
-        {
-          resolve: "gatsby-remark-external-links",
-          options: {
-            target: "_blank",
-          },
-        },
-        {
-          resolve: "gatsby-remark-embed-gist",
-          options: {
-            // Optional:
-
-            // the github handler whose gists are to be accessed
-            username: "weirdpattern",
-
-            // a flag indicating whether the github default gist css should be included or not
-            // default: true
-            includeDefaultCss: true,
-          },
-        },
-        {
-          resolve: `gatsby-remark-relative-images`,
-        },
-        {
-          resolve: `gatsby-remark-images`,
-          options: {
-            maxWidth: 400,
-            wrapperStyle: `margin-bottom: 1.0725rem;display:block;margin: 0px auto;`,
-          },
-        },
-        {
-          resolve: `gatsby-remark-responsive-iframe`,
-          options: {
-            wrapperStyle: `margin-bottom: 1.0725rem`,
-          },
-        },
-        "gatsby-remark-autolink-headers",
-
-        {
-          resolve: `gatsby-remark-prismjs`,
-          options: {
-            showLineNumbers: true,
-          },
-        },
-        `gatsby-remark-copy-linked-files`,
-        // {
-        //   reslove: `gatsby-remark-copy-linked-files`,
-        //   options: {
-        //     ignoreFileExtensions: [],
-        //   },
-        // },
-
-        `gatsby-remark-smartypants`,
-        "gatsby-remark-embedder",
-      ],
     },
     "gatsby-plugin-dark-mode",
     "gatsby-plugin-theme-ui",
