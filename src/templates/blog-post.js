@@ -103,7 +103,7 @@ export const pageQuery = graphql`
     mdx(slug: { eq: $slug }) {
       id
       excerpt(pruneLength: 160)
-      html
+      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

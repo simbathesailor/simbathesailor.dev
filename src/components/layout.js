@@ -60,6 +60,7 @@ function Layout(props) {
           style={{
             boxShadow: `none`,
             textDecoration: `none`,
+            // color:
             // color: `inherit`,
           }}
           to={`/`}
