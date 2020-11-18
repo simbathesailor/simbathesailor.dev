@@ -14,8 +14,12 @@ function ThemeChangeComponent() {
           <label style={{ display: "flex", alignItems: "center" }}>
             <input
               type="checkbox"
-              onChange={e => toggleTheme(e.target.checked ? "dark" : "light")}
-              checked={theme === "dark"}
+              onChange={e => {
+                console.log("ThemeChangeComponent -> e ", e.target.checked)
+
+                toggleTheme(e.target.checked ? "dark" : "light")
+              }}
+              // checked={theme === "dark"}
               style={{ marginRight: "10px" }}
             />
             <img
