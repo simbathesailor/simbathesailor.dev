@@ -1,5 +1,6 @@
 import { toTheme } from "@theme-ui/typography"
 import wordpress2016 from "typography-theme-wordpress-2016"
+import nightOwl from "@theme-ui/prism/presets/night-owl.json"
 import merge from "lodash.merge"
 
 const typography = toTheme(wordpress2016)
@@ -32,6 +33,9 @@ export default merge(typography, {
     },
     root: {
       fontFamily: "Montserrat, sans-serif",
+    },
+    code: {
+      ...nightOwl,
     },
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
