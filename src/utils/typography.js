@@ -13,7 +13,7 @@ Wordpress2016.overrideThemeStyles = () => {
     hr: {
       background: "var(--hr)",
     },
-    "h2,h3": {
+    "h2,h3,h4": {
       fontFamily: "inherit",
       fontWeight: 800,
       color: "var(--header)",
