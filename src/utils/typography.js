@@ -30,6 +30,8 @@ Wordpress2016.overrideThemeStyles = () => {
     },
     "p code": {
       fontSize: "1rem",
+      color: "var(--header)",
+      background: "none",
     },
     "p img": {
       margin: "0px auto",
