@@ -15,7 +15,7 @@ function ThemeChangeComponent() {
             <input
               type="checkbox"
               onChange={e => {
-                console.log("ThemeChangeComponent -> e ", e.target.checked)
+                // console.log("ThemeChangeComponent -> e ", e.target.checked)
 
                 toggleTheme(e.target.checked ? "dark" : "light")
               }}

@@ -1,7 +1,7 @@
 ---
 title: Github private packages and docker
 date: 2020-11-18T16:27:25.728Z
-tags: library, reactjs, github packages
+tags: library, reactjs, github packages, Docker
 published: "true"
 description: Github packages provide a good alternative for private / public packages . We will see how we can create a library and publish it to github packages and how to consume it. We will see how we can modify our docker files to allow private github packages installation.
 ---
@@ -17,11 +17,10 @@ Couple of months back , our team rolled out a design system, which have a librar
 
 The installation should be very similar to how we do it today mostly with frontend projects using `npm install / yarn` 
 
-We were already having teams licence for organization. we were having  all our codebases available on github already. Github packages seemed very legit as an option for private package hosting. We are anyways getting it with the licence we had.
-
+We were already having teams licence for organization. we were having  all our codebases available on github already. Github packages seemed very legit as an option for private package hosting. We are anyways getting it with the existing licence. 
 
 ---
-In this article, I am going to explain how we can publish and consume Github apckages(private/public) and also what changes needs to be done in dockerfile to get the install working when docker builds are happening.
+In this article, I am going to explain how we can publish and consume Github packages *(private/public)* and also what changes needs to be done in *Dockerfile* to get the installs working for docker builds
 
 ---
 
@@ -29,11 +28,11 @@ Let's see how we can get it done.
 
 ### PACKAGE CREATION
 
-**Note: If you have packages ready , Please  dive directly into next section:** which is [Publish packages](/github-packages/#publish-package)
+**Note: If you have js based packages ready , Please  dive directly into next section:** which is [Publish packages](/github-packages/#publish-package)
 
 You can create packages in javascript ecosystem using **webpack, rollup or grunt/gulp** e.t.c .
 
-I used  [TSDX](https://github.com/formium/tsdx) which is an excellent library creation helper. I also used lerna [Lerna](https://github.com/lerna/lerna) for versioining of packages.
+We used  [TSDX](https://github.com/formium/tsdx) which is an excellent library creation helper. I also used lerna [Lerna](https://github.com/lerna/lerna) for versioining of packages.
 
 Let's create a simple packages which just give me random numbers between any two numbers. The example is kept trivial to keep the attention into the most important aspect of this article which are *Github Packages*
 
@@ -46,7 +45,7 @@ npx tsdx create randomnumberlib
 ```
 
 
-Pick name of your choice for this library, I have kept is *randomnumberlib*. We are going to use `https:npm.pkg.github.com`(This is packages namespace for npm with github packages) as the registry for this package. Other languages have their own registeries. 
+Pick name of your choice for this library, I have chosen `randomnumberlib` name. We are going to use `https:npm.pkg.github.com`(This is packages namespace for npm with github packages) as the registry for this package. Other languages have their own registeries. 
 
 Read more here : [Github Packages with npm](https://docs.github.com/en/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages) & [Supported github packages client and namespaces](https://docs.github.com/en/free-pro-team@latest/packages/learn-github-packages/about-github-packages#supported-clients-and-formats)
 

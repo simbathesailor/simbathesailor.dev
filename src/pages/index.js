@@ -18,7 +18,7 @@ class BlogIndex extends React.Component {
         <SEO title="All posts" />
         <Bio />
         {posts.map(({ node }) => {
-          console.log("BlogIndex -> render -> node", node)
+          // console.log("BlogIndex -> render -> node", node)
           const { published } = node.frontmatter
           const title = node.frontmatter.title || node.fields.slug
           if (published === "false") {
@@ -49,7 +49,7 @@ class BlogIndex extends React.Component {
                   >
                     <ThemeToggler>
                       {({ theme }) => {
-                        console.log("BlogIndex -> render -> theme", theme)
+                        // console.log("BlogIndex -> render -> theme", theme)
                         return tags.split(",").map((item, index) => {
                           return (
                             <div

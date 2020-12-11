@@ -16,7 +16,8 @@ body.light {
   --textTitle: #393e46;
   --textLink: #00adb5;
   --hr: hsla(0, 0%, 0%, 0.2);
-  --inlineCode-bg: rgba(255, 229, 100, 0.2);
+  --inlineCode-bg: rgba(210, 198, 198, 0.88);
+
   --inlineCode-text: #1a1a1a;
   --form-shadow: 0 2px 15px 0 rgba(210, 214, 220, 0.5);
 }
@@ -31,8 +32,9 @@ body.dark {
   --textTitle: #ffffff;
   --textLink: var(--siteThemeColor);
   --hr: hsla(0, 0%, 100%, 0.2);
-  --inlineCode-bg: rgba(115, 124, 153, 0.2);
+  --inlineCode-bg: rgba(255, 229, 100, 0.2);
   --inlineCode-text: #e6e6e6;
+
   --form-shadow: 0 2px 15px 0 rgba(26, 26, 27, 0.637);
 }
 
@@ -251,4 +253,15 @@ pre[data-line] {
 .gatsby-highlight pre[class*="language-"] {
   float: left;
   min-width: 100%;
+}
+
+/* :not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: var(--inlineCode-bg) !important;
+} */
+:not(pre) > code[class*="language-"] {
+  background: var(--inlineCode-bg) !important;
+  color: var(--inlineCode-text) !important;
+  border: none !important;
+  text-shadow: none !important;
 }
