@@ -204,7 +204,7 @@ pre[class*="language-"] ::selection {
 .token.tag,
 .token.operator,
 .token.keyword {
-  color: #ffa7c4;
+  color: var(--siteThemeColor);
 }
 
 .token.boolean {

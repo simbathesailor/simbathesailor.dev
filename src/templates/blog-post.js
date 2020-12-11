@@ -10,10 +10,7 @@ import { rhythm, scale } from "../utils/typography"
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    console.log(
-      "🚀 ~ file: blog-post.js ~ line 12 ~ BlogPostTemplate ~ render ~ this.props.data",
-      this.props.data
-    )
+
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
