@@ -4,11 +4,16 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import TagCapsules from "../components/TagCapsules"
 import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
+    console.log(
+      "🚀 ~ file: blog-post.js ~ line 12 ~ BlogPostTemplate ~ render ~ this.props.data",
+      this.props.data
+    )
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
@@ -28,6 +33,9 @@ class BlogPostTemplate extends React.Component {
             >
               {post.frontmatter.title}
             </h1>
+            <TagCapsules
+              tags={this.props.data.markdownRemark.frontmatter.tags}
+            />
             <p
               style={{
                 ...scale(-1 / 5),
@@ -105,6 +113,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
     }
   }
