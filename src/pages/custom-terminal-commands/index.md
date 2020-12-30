@@ -96,7 +96,7 @@ Now What needs to be done ?
 Let's add the below shebang line on top of our  file. 
 
 ```
-#!/usr/bin/env node`
+#!/usr/bin/env node
 
 ```
 
@@ -188,9 +188,26 @@ somework
 You should see your beautiful `Hello World` printed on the terminal.
 
 
-This is about node, how about you are a python guy. And want to write your script in python. You can very well do it
+This is about node, how about you are a python guy and  want to write your script in python. You can very well do it with the help of shebangs
+
+Change the content of file in `somework` file at /usr/local/bin to 
+
+```
+#!/usr/bin/env python3
+
+print("Hello, World!")
+
+```
+
+In this file you can write any python script and will work how nodejs version of the file was running.
+
+There are so many other details which I am not mentioning here. But yes, you can definitely have this article act as a good starting point to create command line 
+utilities for your software.
 
 
 
+Finally A great new 2021 for all of you. May the world be a better place for all of us.
 
-- [Anil Chaudhary](https://twitter.com/simbatheesailor)
+
+
+[Anil Chaudhary](https://twitter.com/simbatheesailor)
