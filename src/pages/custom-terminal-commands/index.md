@@ -60,7 +60,7 @@ So let's go and see various elements involved when you run a command.
 
 
 
-I work mainly in javascript ecosystem , So I have good enough idea how commands are working. I knew that putting a `bin` field in the `package.json` and pointing to your script will be enough([Read more](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin)). 
+I work mainly in javascript ecosystem , So I have a good enough idea about how commands are working. I knew that putting a `bin` field in the `package.json` and pointing to your script will be enough([Read more](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin)). 
 
 
 I never went back to figure out what happens after that. 
