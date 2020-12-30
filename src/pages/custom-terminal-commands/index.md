@@ -206,7 +206,7 @@ utilities for your software.
 
 
 
-Finally A great new 2021 for all of you. May the world be a better place for all of us.
+Finally, Wishing a great new 2021 to all of you. May the world be a better place for all of us in coming years.
 
 
 
