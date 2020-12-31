@@ -14,9 +14,13 @@ Photo by [Photos by hannah joshua
 
 ## TLDR: 
 
-1. Shebangs lines are added on top of command line files. The line tells the system which executable has to be used to run the current file.
+1. Shebangs lines are added on top of command line files. The line tells the system which executable has to be used to run the current file. The shebang line looks something like this:
+  ```
+  #!/usr/bin/env node
+  ```
+The above line means : Execute with a node interpreter, using the program search path to find it.
 
-2. System looks for command files or executables on all the directories pointed by `PATH` environment variable. You can also run different scripting executables using right shebang syntax.
+2. The System looks for command files or executables in all the directories pointed by `PATH` environment variable. You can also run different scripting executables using right shebang syntax.
 3. So to have a valid command , mostly you need to have the executable file in one of the `PATH` directories and correct shebang for right executables.
 
 ---
@@ -34,7 +38,6 @@ Let's say we  have a file named `somework.js`.
 
 Let's assume the only content of the file is:
 
-// somework.js
 ```
 console.log("Hello World")
 
@@ -44,15 +47,15 @@ How will you run in nodejs ?
 
 You will run it something like : `node somework.js`
 
-Now, If I want to run this script withour the node command.
+Now, If I want to run this script without the `node` command. Something like this:
 
 ```
 somework
 ```
 
-It works the same way as it was working with node command. It should output `Hello World` in the terminal.
+It shoudl work the same way as it is working with node command. It should output `Hello World` in the terminal.
 
-So let's go and see various elements involved when you run a command.
+Let's go and see various elements involved when you run a command.
 
 ---
 
@@ -86,42 +89,57 @@ I felt , this is interesting. I searched again. and landed to this [link](https:
 
 Turned out shebang is **interpretor-directive**
 
-Woahhhhhh!!
+## Woahhhhhh!! 😲 😲
 
-But, What is **interpretor-directive** ? . In simple words, it is just way to tell the system how to react to the commands you enter ( what executable need to be run ?)
+But, What is [**interpreter-directive**](https://en.wikipedia.org/wiki/Interpreter_directive)? . In simple words, it is just way to tell the system how to react to the commands you enter ( what executable need to be run ?).
 
 
-Now What needs to be done ?
+In simple words if there is a line like this:
+```
+#!/usr/bin/env node
+```
 
-Let's add the below shebang line on top of our  file. 
+It means:  Execute the file with a node interpreter, using the program search path to find it.
+
+We know we want to run a nodejs file, hence we should add the line to the top of our file
+
+The content of the file would have become:
+
 
 ```
 #!/usr/bin/env node
 
+console.log("Hello World")
+
 ```
 
-Here we are just telling the system that use `node` to run the following file. 
 
 
-Give executable permission to the file also.
+Give executable permission to the file.
 
 ```
  chmod +x somework.js
 
 ```
 
-Still, This will not be enough. Try running it and you should see some error.
+Will that be enough ?
+
+Remember there is one more part to it which
+
+>Using the program search path to find it.
+
+What does that mean ? . Let's see that in next section.
 
 
 ## PATH
 
 We need to figure out how a system looks for executables. Again, I searched for it. and then came across this [link](https://en.wikipedia.org/wiki/PATH_(variable)). 
 
-Note: These are just the final links. In reality it tooks me much more time to reach to these files.
+>**Note:** These are just the final links. In reality it tooks me much more time to reach to these links.
 
 Now coming back to business
 
-As the definition says : 
+As the definition says on wikipedia: 
 
 >PATH is an environment variable on Unix-like operating systems, DOS, OS/2, and Microsoft Windows, specifying a set of directories where executable programs are located
 
@@ -154,6 +172,7 @@ https://stackoverflow.com/questions/24219627/how-to-update-system-path-variable-
 
 https://www.architectryan.com/2012/10/02/add-to-the-path-on-mac-os-x-mountain-lion/#.Uydjga1dXDg
 
+If you are using macos / linux . Changing ~/.bashrc , ~/.zshrc e.t.c should do.
 
 
 If you really want to check other common nodejs command definitions that you use on a daily basis. 
@@ -188,16 +207,17 @@ somework
 You should see your beautiful `Hello World` printed on the terminal.
 
 
-This is about node, how about you are a python guy and  want to write your script in python. You can very well do it with the help of shebangs
+This is about node, how about if you are a `python` guy and  want to write your script in python. You can very well do it with the help of shebangs
 
 Change the content of file in `somework` file at /usr/local/bin to 
 
 ```
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 print("Hello, World!")
 
 ```
+ Note: Make sure you have ` python ` installed in your machine.
 
 In this file you can write any python script and will work how nodejs version of the file was running.
 
