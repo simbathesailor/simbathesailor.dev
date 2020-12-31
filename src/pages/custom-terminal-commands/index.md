@@ -214,7 +214,7 @@ Change the content of file in `somework` file at /usr/local/bin to
 ```
 #!/usr/bin/env python
 
-print("Hello, World!")
+print("Hello World!")
 
 ```
  Note: Make sure you have ` python ` installed in your machine.
