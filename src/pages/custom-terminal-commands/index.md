@@ -135,7 +135,7 @@ What does that mean ? . Let's see that in the next section.
 
 We need to figure out how a system looks for executables. Again, I searched for it. and then came across this [link](https://en.wikipedia.org/wiki/PATH_(variable)). 
 
->**Note:** These are just the final links. In reality it tooks me much more time to reach to these links.
+>**Note:** These are just the final links. In reality it took me much more time to reach to these links.
 
 Now coming back to business
 
@@ -185,7 +185,7 @@ cd /usr/local/bin
 ls
 ```
 
-you can do `vi` to any of it to understand the commands better
+you can do `vi` to any of the file listed to understand the commands better
 
 Now to convert `node somework.js` to `somework`. we will first **rename** the file to just `somework` without extension and then move it to `/usr/local/bin`
 
