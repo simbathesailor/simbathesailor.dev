@@ -14,7 +14,7 @@ Photo by [Photos by hannah joshua
 
 ## TLDR: 
 
-1. Shebangs lines are added on top of command line files. The line tells the system which executable has to be used to run the current file. The shebang line looks something like this:
+1. Shebangs lines are added on top of command-line files. The line tells the system which executable has to be used to run the current file. The shebang line looks something like this:
   ```
   #!/usr/bin/env node
   ```
@@ -32,7 +32,7 @@ Ever wondered how custom commands works at all. 🕺 I wondered this today and t
 > I will try to keep it simple because who doesn't love simplicity.
 
 
-Before we start let's define our end goal. We want to basically run a script from command line using their name only !!
+Before we start let's define our end goal. We want to basically run a script from the command-line using their name only !!
 
 Let's say we  have a file named `somework.js`. 
 
@@ -53,7 +53,7 @@ Now, If I want to run this script without the `node` command. Something like thi
 somework
 ```
 
-It shoudl work the same way as it is working with node command. It should output `Hello World` in the terminal.
+It should work the same way as it is working with node command. It should output `Hello World` in the terminal.
 
 Let's go and see various elements involved when you run a command.
 
@@ -87,7 +87,7 @@ If you are having a nodejs application, go ahead and check any file in the `node
 I felt , this is interesting. I searched again. and landed to this [link](https://en.wikipedia.org/wiki/Shebang_(Unix)). These are called **shebang | hashbang | pound bang | hash-pling**
 
 
-Turned out shebang is **interpretor-directive**
+Turned out shebang is **interpreter-directive**
 
 ## Woahhhhhh!! 😲 😲
 
@@ -128,7 +128,7 @@ Remember there is one more part to it which
 
 >Using the program search path to find it.
 
-What does that mean ? . Let's see that in next section.
+What does that mean ? . Let's see that in the next section.
 
 
 ## PATH
@@ -146,7 +146,7 @@ As the definition says on wikipedia:
 
 Hmm , great !! But how do we  see what is the value of `PATH` right now in my system ? 
 
-RUN (Should work on Linux based Teminals)
+RUN (Should work on Linux based Terminals)
 
 ```
 echo $PATH
@@ -161,12 +161,12 @@ You will get some sort of this as an output:
 /Users/wolfgupta/.nvm/versions/node/v14.15.3/bin:/Applications/mongo/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:$GOPATH/bin:$GOROOT/bin:/Users/wolfgupta/Library/Android/sdk/emulator:/Users/wolfgupta/Library/Android/sdk/tools:/Users/wolfgupta/Library/Android/sdk/tools/bin:/Users/wolfgupta/Library/Android/sdk/platform-tools:/usr/local/mysql/bin
 ```
 
-These are set of directories, which are looked up for the files having same name as the command. The files(somework.js) can contain the logic.
+These are set of directories, which are looked up for the files having the same name as the command. The files(somework.js) can contain logic.
 ### How do we update PATH ?
 
 This should be a very simple search on google. I will leave this task to you guys.
 
-Here are some of the links which you might find it useful.
+Here are some of the links which you might find useful.
 
 https://stackoverflow.com/questions/24219627/how-to-update-system-path-variable-permanently-from-cmd
 
@@ -196,7 +196,7 @@ mv ./somework /usr/local/bin
 
 ```
 
-Now, just close the current teminal tab and open a new tab.
+Now, just close the current terminal tab and open a new tab.
 
 Run 
 
@@ -209,7 +209,7 @@ You should see your beautiful `Hello World` printed on the terminal.
 
 This is about node, how about if you are a `python` guy and  want to write your script in python. You can very well do it with the help of shebangs
 
-Change the content of file in `somework` file at /usr/local/bin to 
+Change the content of the file in `somework` file at /usr/local/bin to 
 
 ```
 #!/usr/bin/env python
@@ -221,12 +221,12 @@ print("Hello World!")
 
 In this file you can write any python script and will work how nodejs version of the file was running.
 
-There are so many other details which I am not mentioning here. But yes, you can definitely have this article act as a good starting point to create command line 
+There are so many other details which I am not mentioning here. But yes, you can definitely have this article act as a good starting point to create command-line 
 utilities for your software.
 
 
 
-Finally, Wishing a great new 2021 to all of you. May the world be a better place for all of us in coming years.
+Finally, Wishing a great new 2021 to all of you. May the world be a better place for all of us in the coming years.
 
 
 
