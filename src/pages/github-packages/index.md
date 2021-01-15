@@ -168,7 +168,7 @@ To consume a public github package, you can just get rid of follwing line from .
 //npm.pkg.github.com/:_authToken=[YOURTOKEN]
 ```
 
->In most of the cases, organizations are using Githu plans which automatically allows github packages.
+>In most of the cases, organizations are using Github plans which automatically allows github packages.
 
 
 ### Docker Install
