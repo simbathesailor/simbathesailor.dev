@@ -13,11 +13,11 @@ Photo from https://unsplash.com/@element5digital
 Github packages have been around for a while now. As a developer we spend so much time on github either for our office work or for opensource projects.
 
 
-Couple of months back , our team rolled out a design system, which have a library component also. These library have to be hosted somewhere so that , we can consume it in various projects.
+Couple of months back , our team rolled out a design system, which have a library component also. The library has to be hosted somewhere so that , we can consume it in various projects.
 
 The installation should be very similar to how we do it today mostly with frontend projects using `npm install / yarn` 
 
-We were already having teams licence for organization. we were having  all our codebases available on github already. Github packages seemed very legit as an option for private package hosting. We are anyways getting it with the existing licence. 
+We were already having teams licence for organization. we were having  all our codebase available on github already. Github packages seemed very legit as an option for private package hosting. We are anyways getting it with the existing licence. 
 
 ---
 In this article, I am going to explain how we can publish and consume Github packages *(private/public)* and also what changes needs to be done in *Dockerfile* to get the installs working for docker builds
@@ -32,9 +32,9 @@ Let's see how we can get it done.
 
 You can create packages in javascript ecosystem using **webpack, rollup or grunt/gulp** e.t.c .
 
-We used  [TSDX](https://github.com/formium/tsdx) which is an excellent library creation helper. I also used lerna [Lerna](https://github.com/lerna/lerna) for versioining of packages.
+We used  [TSDX](https://github.com/formium/tsdx) which is an excellent library creation helper. I also used lerna [Lerna](https://github.com/lerna/lerna) for versioining of packages, allthough we will not talk about lerna here. 
 
-Let's create a simple packages which just give me random numbers between any two numbers. The example is kept trivial to keep the attention into the most important aspect of this article which are *Github Packages*
+Let's create a simple packages which will just give us some random numbers between any two numbers. The example is kept trivial to keep the attention into the most important aspect of this article which are *Github Packages*
 
 Run 
 
@@ -79,8 +79,25 @@ If you have the package already or you have created a package using the steps in
 
 `simbathesailor` is mygithub username and `randomnumberlib` is the library name
 
+if your package is under any organization, then the above format will become `@[organizationnameseenongithub]/[packagename]`. I think most of you reading will have this scenario.
+
 
 The name attribute in the package.json can be changed to the required package name.
+
+so my package.json will look something like this:
+
+```
+...
+"name": "@[organizationnameseenongithub]/[packagename]"
+...
+```
+
+For this example , mine package.json looks like this:
+
+```
+"name": "@simbathesailor/randomnumberlib"
+```
+
 
 First step is to generate a personal access token from https://github.com/settings/tokens.
 
@@ -94,7 +111,7 @@ First step is to generate a personal access token from https://github.com/settin
  npm login  --registry=https://npm.pkg.github.com
 
 ```
-It will prompt for username. Put you github username
+It will prompt for username. Put you `github username`
 
 Next, it will ask for password: Paste the token generated in step 1.
 
@@ -125,30 +142,38 @@ Replace `USERNAME` and `YOURTOKEN` with the orgname/username and github token(wi
 
 If you don't want to add this file at repository level. You can also keep the same in ~/.npmrc.
 
-3. Add .npmrc in .gitignore. Because we definitely don't want to commit token to github.
+3. Add .npmrc in `.gitignore`. Because we definitely don't want to commit token to github.
+
+You can create a .npmrc at ~/.npmrc and put the same content there.
+That should also work.
 
 4. Then just do the normal package install by running below command
+
+There is one more way of doing it.
+
 
 ```
 npm install
 ```
 If every steps worked fine above, the install would have happened successfully.
 
-To consume a public github package, you can just get rid of follwing line from .npmrc
+
+
+And That's it voila,🎆 you have published and consumed a private package. 
+In my opinion, now with github packages it is very easy to publish and consume private packages as the packages stays near to your code. 
+
+To consume a public github package, you can just get rid of follwing line from .npmrc, because now you should bnot be needing any authentication
 
 ```
 //npm.pkg.github.com/:_authToken=[YOURTOKEN]
 ```
 
-And That's it voila,🎆 you have published and consumed a private package. 
-In my opinion, now with github packages it is very easy to publish and consume private packages as the packages stays near your code. 
-
-Also in most of the case organizations are using plans of github which autimatically allows github packages feature.
+>In most of the cases, organizations are using Githu plans which automatically allows github packages.
 
 
 ### Docker Install
 
-Add the following content to your docker file. Not all the part is relevant,but the part where I am adding github token can be noticed more carefully
+Add the following content to your docker file. Not all the parts are relevant,but the part where I am adding github token can be noticed bit more carefully.
 
 ```dockerfile
 
