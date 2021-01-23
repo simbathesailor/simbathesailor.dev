@@ -24,7 +24,7 @@ Let's see what were my **expectations** with a qrcode scanning solution in react
 1. It should be a simple named  import in my code.
 2. It should work deterministically for almost all the time.
 3. It should handle the cases when camera access is not there or camera is itself not there.
-4. It should work across mobile browers and web browsers atleast the major ones. (safari, chrome, mozilla, edge). Why I am specifing mobile browsers ? Because most of the time qr code scanning will be done via mobile phone's camera.
+4. It should work across mobile browsers and web browsers atleast the major ones. (safari, chrome, mozilla, edge). Why I am specifing mobile browsers ? Because most of the time qr code scanning will be done via mobile phone's camera.
 
 
 ## Am I asking too much ?
@@ -36,7 +36,7 @@ Some of you might say :
 Let's start the adventure now keeping in mind the above expectations.
 
 
-I made use of follwing [html5-qrcode](https://github.com/mebjas/html5-qrcode#readme) library for qrcode scanning. [mebjas](https://github.com/mebjas) created this wrapper around [jsqrcode](https://github.com/LazarSoft/jsqrcode) which is a port of [zxing](https://github.com/zxing/zxing) written in java. 
+I made use of  [html5-qrcode](https://github.com/mebjas/html5-qrcode#readme) library for qrcode scanning. [mebjas](https://github.com/mebjas) created this wrapper around [jsqrcode](https://github.com/LazarSoft/jsqrcode) which is a port of [zxing](https://github.com/zxing/zxing) written in java. 
 
 
 Whoaa !! so many people are involved to bring qrcode scan to web. They truly deserve the applaud.
@@ -112,7 +112,9 @@ There are two ways of doing it.
 
 
     
+---
 
+### Are we done yet ?
 
 
 ![We are not done yet](https://media.giphy.com/media/ItjO4QS1WeAjATXrid/giphy.gif)
@@ -134,17 +136,17 @@ Now to use the above custom hook, you can have a sample code like this:
 
 ```javascript
 const { startQrCode, decodedQRData } = useQRCodeScan({
-  "qrcodemountnode",
+  qrcodeMountNodeID: "qrcodemountnode",
 });
 
 ```
 
-In your jsx 
+In your JSX
 
 ```jsx
 <div id="qrcodemountnode"></div>
 ```
-**Note**: Make sure you have a DOM node with id `qrcodemountnode`. 
+**Note**: Make sure you have a DOM node with id `qrcodemountnode` before you start the scanning.
 
 Once you have access to `startQrCode`  you can call it either on button click , or on mount of the component or any other way.
 
@@ -160,7 +162,7 @@ I kept the `qrcodemountnode` html element in a modal. On click of some button, I
   }, []);
 ```
 
-Whenever the scan is successfull, you will get the data in `decodedQRData`, which can be read by your component to trigger either an API or any action.
+Whenever the scan is successful, you will get the data in `decodedQRData`, which can be read by your component to trigger either an API or any action.
 
 ## But then does the story ends here ?
 
@@ -173,7 +175,7 @@ There are some facts which i came to know, when doing development.
 
 First the camera access will only be allowed for `https` connections.
 
-ok , so how do we do that in `CRA`
+Ok , so how do we do that in `CRA`
 
 Just start the server like this : 
 
@@ -185,7 +187,7 @@ HTTPS=true npm start
 
 ---
 
-Next one was How do you test in the phone, while doing dvelopment on the laptop. You can't be waiting for the deployment to happen to some environment first and then do the testing.
+Next one was How do you test in the phone, while doing development on the laptop. You can't be waiting for the deployment to happen to some environment first and then do the testing.
 
 To get around this: I ran following command in the terminal to find out the my laptop ip address.(Mine is mac machine,  for window and various linux distros it can be different).
 
@@ -220,6 +222,8 @@ If you are able to create a qrcode scanner using this article. Scan the below qr
 ![qrcode-twitter](./twitter.png)
 
 Best of luck !!
+
+
 
 
 
