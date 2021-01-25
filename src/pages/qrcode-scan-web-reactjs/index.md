@@ -217,7 +217,7 @@ Lastly , how will we debug the app running in your phone ? I mean how we will se
 
 3. I once thought to implement qrcode scanner on my own , then realized there is a lot of mathematics, logic and genius involved. I cannot implement it on my own or atleast in a finite time.
 
-If you are able to create a qrcode scanner using this article. Scan the below qrcode to follow me. Don't uuse any readymade qrcode scanner 😜
+If you are able to create a qrcode scanner using this article. Scan the below qrcode to follow me. Don't use any readymade qrcode scanner 😜
 
 ![qrcode-twitter](./twitter.png)
 
