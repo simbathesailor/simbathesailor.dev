@@ -13,7 +13,7 @@ Photo from [https://unsplash.com/@austindistel](https://unsplash.com/@austindist
 
 Do you ever has the need to preview `pdf` on web ?. It's so common but still draws every ounce of energy from a developer to make it work properly on every device. 
 
-> Why it has so to be so hard ?
+> Why it has to be so hard ?
 
 ## My Attempts
 
