@@ -1,6 +1,6 @@
 ---
 title: Solving Pdf Preview Nightmare
-date: 2021-01-26T15:08:25.728Z
+date: 2021-01-27T15:08:25.728Z
 tags: pdf, pdf-preview, reactjs
 published: "true"
 description: Pdfs are the most popular way of sharing large documents. But does previewing them on web is consistent and easy ? . We will check that out in this article.
@@ -17,9 +17,9 @@ Do you ever has the need to preview `pdf` on web ?. It's so common but still dra
 
 ## My Attempts
 
-1. Just open the pdf in the new tab and the borwser will take care of it to preview it correctly.
+1. Just open the pdf in the new tab and the browser will take care of it to preview  correctly.
   
-**Problem**: It's not always the best experience for the user. You don't want user to switch the context to a separate tab. It looks much bad when it happens on mobile device. The better experience would be on the same page without sacrificing context.
+**Problem**: It's not always the best experience for the user. You don't want user to switch the context by moving to a separate tab. It looks much bad when it happens on mobile device. The better experience would be on the same page without sacrificing context.
 
 2. Try to open the document in a iframe. The iframe can be bit tricky across browsers. There can be security restrictions and disallow policy for certain pdfs. E.g When I tried opening some sample pdf which were opening fine on desktop device were not rendering at all on mobile device. 
    
@@ -52,11 +52,11 @@ Hence I have to write my own port of mozilla pdf.js for reactjs using examples f
 
 I wanted a pdf mobile previewer and it seemed that mozilla pdf.js has example folder available.
 
-I just need to `Reactify` it.
+I just needed to `Reactify` it.
 
 
 
-First step to make certain scripts available in your html.
+First step is to add certain script to your html.
 
 Add following scripts in your body tag.
 
@@ -70,6 +70,8 @@ Once these scripts are added properly we should have `pdfjsViewer` and  `pdfjsLi
 
 **Note:** Make sure we get it right, before we move ahead
 
+
+Now we will create a React component called `PdfPreview`.
 
 Let's see the boiler-plate code for the `PdfPreview` component:
 
@@ -92,13 +94,12 @@ Take some time to go through the code above. Nothing fancy just some JSX and an 
 
 We need to add pdf preview initialization inside useEffect.
 
-Now let's add Mozilla pdf.js code copied from their [example folder](https://github.com/mozilla/pdf.js/blob/master/examples) with some slight changes.
+Now let's add Mozilla pdf.js code copied from their [example folder](https://github.com/mozilla/pdf.js/blob/master/examples) with slight changes. The changes made are just to accomodate handling when pdf Url itself is not there or not valid. 
+
+The code below can seem daunting at first, but most of it is just handling the pdf preview various case and updating UI. I have copied most of the content directly from mozilla pdf.js examples. They have done a splendid work by putting up great examples.
 
 
 `gist:simbathesailor/7d0b3a3ba9b44c5540e1a5c4bfde1f53`
-
-
-I made use of styled components, but I am  pretty sure you can accomodate the css written in styled components in any css system you are using.
 
 
 If every thing worked you should the pdf should have rendered properly.
@@ -127,6 +128,8 @@ The best part of this solution is now it is supported across devices and modern 
 Tested it on mozilla, chrome, safari for both desktop and mobile versions.
 
 I wrote this article for my future self and for others, because I know that pdf preview is very common use case and will comeback often.
+
+This pdf previewer for react is not packaged yet. May package it if I get good response or someone else can try it doing.
 
 
 Thanks
