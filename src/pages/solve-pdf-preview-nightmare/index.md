@@ -47,7 +47,7 @@ Nopes. Not at all.
 
 Hence I have to write my own port of mozilla pdf.js for reactjs using examples from  [https://github.com/mozilla/pdf.js/blob/master/examples]( https://github.com/mozilla/pdf.js/blob/master/examples)
 
-## Pdf Preview implemenation
+## Pdf Preview implementation
 
 
 I wanted a pdf mobile previewer and it seemed that mozilla pdf.js has example folder available.
@@ -83,9 +83,9 @@ This component takes in three props:
 ```
 docUrl: String -> It is the pdf URL.
 
-uniqueContainerId: Striing -> It is uniqueContainerId 
+uniqueContainerId: String -> It is uniqueContainerId 
 
-styles: Object -> styles need to appended to the basse styles
+styles: Object -> styles need to appended to the base styles
 
 ```
 
@@ -125,7 +125,7 @@ Ohh alrighty !! Here is your demo below. Feel free to check the code, fork it an
 I spent more than 6-7 hours to find out the solution. I hope someone who finds it will not.
 
 The best part of this solution is now it is supported across devices and modern browsers.There will be surely be certain browsers where it might fail, but haven't found any yet.
-Tested it on mozilla, chrome, safari for both desktop and mobile versions.
+Tested it on mozilla(82.0.3 (64-bit)) , chrome(Version 87.0.4280.141), safari (Version 13.1.3 (15609.4.1)) for both desktop and mobile versions.
 
 I wrote this article for my future self and for others, because I know that pdf preview is very common use case and will comeback often.
 
