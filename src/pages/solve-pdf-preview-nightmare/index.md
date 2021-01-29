@@ -102,7 +102,7 @@ The code below can seem daunting at first, but most of it is just handling the p
 `gist:simbathesailor/7d0b3a3ba9b44c5540e1a5c4bfde1f53`
 
 
-If every thing worked you should the pdf should have rendered properly.
+If everything worked you should see  the pdf rendered properly.
 
 But you all must be thinking :
 
