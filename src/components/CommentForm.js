@@ -56,7 +56,7 @@ const CommentForm = ({ parentId, slug, onClickSubmit }) => {
   }
 
   const [theme, setTheme] = React.useState("light")
-  useEffect(() => {
+  React.useEffect(() => {
     const themeCalculate = localStorage.getItem("theme")
     setTheme(themeCalculate)
   }, [])
