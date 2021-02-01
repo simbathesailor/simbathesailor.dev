@@ -32,7 +32,6 @@ function BlogPostTemplate(props) {
         id: doc.id,
       })
     })
-    console.log("🚀 ~ file: blog-post.js ~ line 31 ~ getComments ~ arr", arr)
     setComments(arr)
   }
   useEffect(getComments, [])
@@ -73,7 +72,14 @@ function BlogPostTemplate(props) {
       })
   }
 
-  const isMobile = window.matchMedia(`(max-width: 672px)`).matches
+  // useEffect(() => {
+
+  // }, [])
+
+  const isMobile =
+    typeof window !== undefined
+      ? window.matchMedia(`(max-width: 672px)`).matches
+      : false
   return (
     <Layout location={props.location} title={siteTitle}>
       <SEO
