@@ -34,7 +34,9 @@ function BlogPostTemplate(props) {
     })
     setComments(arr)
   }
-  useEffect(getComments, [])
+  useEffect(() => {
+    getComments()
+  }, [])
 
   const { count, setCount } = Heart.useSetupHook()
 
@@ -60,7 +62,6 @@ function BlogPostTemplate(props) {
 
   useEffect(() => {
     getLikes()
-    return () => {}
   }, [])
 
   async function likeBlog({ slug, count }) {
