@@ -73,7 +73,7 @@ function BlogPostTemplate(props) {
       })
   }
 
-  const [iseMounted, setIsMounted] = React.useState(false)
+  const [isMounted, setIsMounted] = React.useState(false)
   const [isMobile, setisMobile] = React.useState(false)
   useEffect(() => {
     const isMobileCalculate =
