@@ -77,7 +77,7 @@ function BlogPostTemplate(props) {
   // }, [])
 
   const isMobile =
-    typeof window !== undefined
+    typeof window !== "undefined"
       ? window.matchMedia(`(max-width: 672px)`).matches
       : false
   return (
