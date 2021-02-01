@@ -72,14 +72,15 @@ function BlogPostTemplate(props) {
       })
   }
 
-  // useEffect(() => {
+  const [isMobile, setisMobile] = React.useState(false)
+  useEffect(() => {
+    const isMobileCalculate =
+      typeof window !== "undefined"
+        ? window.matchMedia(`(max-width: 672px)`).matches
+        : false
+    setisMobile(isMobileCalculate)
+  }, [])
 
-  // }, [])
-
-  const isMobile =
-    typeof window !== "undefined"
-      ? window.matchMedia(`(max-width: 672px)`).matches
-      : false
   return (
     <Layout location={props.location} title={siteTitle}>
       <SEO
