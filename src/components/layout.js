@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import NightIcon from "../assets/night-icon.png"
 import MorningIcon from "../assets/morning-icon.png"
+import Comments from "./Comments"
 
 import { rhythm, scale } from "../utils/typography"
 
@@ -35,6 +36,7 @@ function ThemeChangeComponent() {
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
+
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
