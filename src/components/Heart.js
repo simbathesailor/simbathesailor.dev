@@ -10,8 +10,8 @@ import PropTypes from "prop-types"
 const HeartContainer = styled.div`
   position: fixed;
   top: 0;
-  transform: translateY(14vh);
-  right: 50px;
+  transform: translateY(30vh);
+  left: 50px;
   ${props => props.styles || ""}
 `
 
