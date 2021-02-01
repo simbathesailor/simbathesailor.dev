@@ -73,6 +73,7 @@ function BlogPostTemplate(props) {
       })
   }
 
+  const [iseMounted, setIsMounted] = React.useState(false)
   const [isMobile, setisMobile] = React.useState(false)
   useEffect(() => {
     const isMobileCalculate =
@@ -80,7 +81,8 @@ function BlogPostTemplate(props) {
         ? window.matchMedia(`(max-width: 672px)`).matches
         : false
     setisMobile(isMobileCalculate)
-  }, [])
+    setIsMounted(true)
+  }, [isMounted])
 
   return (
     <Layout location={props.location} title={siteTitle}>
@@ -117,24 +119,26 @@ function BlogPostTemplate(props) {
             >
               {post.frontmatter.date}
             </p>
-            <Heart
-              count={count}
-              onClickHeart={() => {
-                setCount(c => c + 1)
-                likeBlog({
-                  slug,
-                  count: count + 1,
-                })
-              }}
-              stylesContainer={
-                isMobile
-                  ? css`
-                      position: static;
-                      transform: none;
-                    `
-                  : ``
-              }
-            />
+            {isMounted && (
+              <Heart
+                count={count}
+                onClickHeart={() => {
+                  setCount(c => c + 1)
+                  likeBlog({
+                    slug,
+                    count: count + 1,
+                  })
+                }}
+                stylesContainer={
+                  isMobile
+                    ? css`
+                        position: static;
+                        transform: none;
+                      `
+                    : ``
+                }
+              />
+            )}
           </div>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
