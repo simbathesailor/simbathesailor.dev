@@ -4,6 +4,7 @@ date: 2021-01-27T15:08:25.728Z
 tags: pdf, pdf-preview, reactjs
 published: "true"
 description: Pdfs are the most popular way of sharing large documents. But does previewing them on web is consistent and easy ? . We will check that out in this article.
+cover: https://images.unsplash.com/photo-1553484771-371a605b060b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
 ---
 
 
