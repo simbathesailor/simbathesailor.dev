@@ -38,8 +38,12 @@ function BlogPostTemplate(props) {
     getComments()
   }, [])
 
-  const { count, setCount } = Heart.useSetupHook()
-
+  const [likeData, setLikeData] = React.useState({
+    isFetching: false,
+    isFetched: false,
+    isFailure: false,
+    data: { count: 0 },
+  })
   /**
    * https://firebase.google.com/docs/firestore/manage-data/add-data#node.js_1
    *
@@ -47,16 +51,37 @@ function BlogPostTemplate(props) {
    */
 
   async function getLikes() {
+    setLikeData({
+      ...likeData,
+      isFetching: true,
+    })
     const res = await firestore
       .collection("likes")
       .doc(slug)
       .get()
+
     if (!res.exists) {
-      setCount(0)
+      setLikeData({
+        ...likeData,
+        isFetching: false,
+        isFailure: false,
+        isFetched: true,
+        data: {
+          count: 0,
+        },
+      })
     } else {
       const getData = res.data()
 
-      setCount(getData.count)
+      setLikeData({
+        ...likeData,
+        isFetching: false,
+        isFailure: true,
+        isFetched: true,
+        data: {
+          count: getData.count,
+        },
+      })
     }
   }
 
@@ -120,14 +145,19 @@ function BlogPostTemplate(props) {
             >
               {post.frontmatter.date}
             </p>
-            {isMounted && (
+            {isMounted && likeData.isFetched && (
               <Heart
-                count={count}
+                count={likeData.data.count || 0}
                 onClickHeart={() => {
-                  setCount(c => c + 1)
+                  setLikeData({
+                    ...likeData,
+                    data: {
+                      count: likeData.data.count + 1,
+                    },
+                  })
                   likeBlog({
                     slug,
-                    count: count + 1,
+                    count: likeData.data.count + 1,
                   })
                 }}
                 stylesContainer={
