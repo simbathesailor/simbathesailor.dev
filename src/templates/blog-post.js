@@ -89,6 +89,7 @@ function BlogPostTemplate(props) {
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        cover={post.frontmatter.cover}
       />
 
       <article>
@@ -208,6 +209,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         tags
+        cover
       }
       fields {
         slug

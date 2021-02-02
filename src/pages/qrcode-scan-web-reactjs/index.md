@@ -4,6 +4,7 @@ date: 2021-01-23T15:08:25.728Z
 tags: qrcode, reactjs, ecommerce
 published: "true"
 description: Let's see what it takes to build a decent qrcode scanner in reactjs which works.
+cover: https://images.unsplash.com/photo-1559131397-f94da358f7ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
 ---
 ![Photo by https://unsplash.com/@proxyclick](https://images.unsplash.com/photo-1559131397-f94da358f7ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)
 
