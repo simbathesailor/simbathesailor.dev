@@ -157,7 +157,7 @@ Any mistakes here are also noticed by the interviewer, but if your psuedo code w
 
 Once after the actual code, try to run one or two test cases if time permits.
 
-Few points to focus on :
+### Few points to focus on :
 
 The most important challenge is to get things right in a limited time. If you get confused or redo the work. things become difficult to get back as not much time is left. There will be outliers.
 
