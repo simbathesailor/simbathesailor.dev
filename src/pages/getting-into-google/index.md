@@ -55,7 +55,7 @@ To the people thinking 8-9 questions is too less. Maybe it is. But again decide 
 
 There were some good youtube channels also which made me fit into this interview groove. Most useful were **freecodecamp** algorithms track, striver live sessions on solving leetcode challenge. And man, when you see **striver** doing live leetcode without sweating it out and with complete clarity, you will go wow. I learned a lot of concepts quickly on those youtube streams than by reading any fat books. I am not adding any links here, go ahead and search for them on youtube.
 
-> Clarity and ability to manoeuvre data structures is that needed in the interview.
+> Clarity and ability to manoeuvre data structures is what needed in the interview.
 
 ---
 
