@@ -153,7 +153,7 @@ while (i < j) {
 
 You have already done the heavy lifting above while writing and testing the pseudocode. Ideally, the test cases should also pass for the actual code because it passed for pseudocode.
 
-Any mistakes here are also noticed by the interviewer, but if every actual code is well, you will either make a silly mistake or no mistake at all.
+Any mistakes here are also noticed by the interviewer, but if your psuedo code worked, you will either make a silly mistake or no mistake at all.
 
 Once after the actual code, try to run one or two test cases if time permits.
 
