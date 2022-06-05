@@ -171,7 +171,7 @@ This is for the one round. Keep patience and try to repeat for the next 4-5 inte
 
 Best of luck to all of you reading this. I hope these all pointers will give you a clearer perspective on interviews.
 
-Here is me wearing Noogler hat .
+Here is me wearing the famous Noogler hat .
 
 ![Anil wearing noogler hat](./nooglerhat.jpeg)
 
