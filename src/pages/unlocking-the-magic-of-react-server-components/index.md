@@ -3,7 +3,7 @@ title: Unlocking the Magic of React Server Components
 date: 2023-07-30T14:08:25.728Z
 tags: reactjs
 published: "true"
-description: Pdfs are the most popular way of sharing large documents. But does previewing them on web is consistent and easy ? . We will check that out in this article.
+description: React server component are the exciting new technology which forces us to change the big mental model while working on reactjs applications. Let's see what react server components brings to the table.
 cover: https://images.unsplash.com/photo-1588591795084-1770cb3be374?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80
 ---
 
