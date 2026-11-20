@@ -9,7 +9,7 @@ const blog = defineCollection({
     base: "./src/content/blog",
     generateId: ({ entry }) => entry.split("/")[0],
   }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     date: z.coerce.date(),
     updated: z.coerce.date().optional(),
@@ -32,6 +32,9 @@ const blog = defineCollection({
       .transform((v) => v === true || v === "true"),
     draft: z.boolean().default(false),
     cover: z.string().optional(),
+    // Optional share image (LinkedIn, X, Slack...). Without it one is generated from the title.
+    image: image().optional(),
+    imageAlt: z.string().optional(),
   }),
 });
 

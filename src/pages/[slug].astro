@@ -1,5 +1,6 @@
 ---
 import { render } from "astro:content";
+import { getImage } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import { getPosts, readingMinutes, formatDate, type Post } from "../lib";
 
@@ -12,13 +13,17 @@ const { post, posts } = Astro.props as { post: Post; posts: Post[] };
 const { Content } = await render(post);
 const { title, description, date, updated, tags, cover, track, kind } = post.data;
 const minutes = readingMinutes(post.body);
+// Share image: the post's own `image` if set, otherwise the generated card.
+const shareImage = post.data.image
+  ? (await getImage({ src: post.data.image, width: 1200, height: 630, fit: "cover", format: "png" })).src
+  : `/og/${post.id}.png`;
 // Previous / next within the same group, so readers can go through in order.
 const group = posts.filter((p) => p.data.track === track);
 const i = group.findIndex((p) => p.id === post.id);
 const newer = group[i - 1];
 const older = group[i + 1];
 ---
-<Base title={title} description={description} image={cover} type="article">
+<Base title={title} description={description} image={shareImage} imageAlt={post.data.imageAlt} type="article" published={date}>
   <article>
     <div class:list={["post-band", { archive: track !== "ai-infra" }]}>
     <header class="post-head">
