@@ -1,0 +1,28 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostList from "../../components/PostList.astro";
+import { getPosts } from "../../lib";
+
+const posts = await getPosts();
+const byYear = new Map<number, typeof posts>();
+for (const p of posts) {
+  const y = p.data.date.getFullYear();
+  byYear.set(y, [...(byYear.get(y) ?? []), p]);
+}
+---
+<Base title="Writing" description="Everything Anil Chaudhary has written, newest first.">
+  <h1 class="page-title">Writing</h1>
+  {[...byYear].map(([year, list]) => (
+    <section class="year">
+      <h2>{year}</h2>
+      <PostList posts={list} />
+    </section>
+  ))}
+</Base>
+
+<style>
+  .page-title { font-size: var(--step-4); letter-spacing: -0.03em; margin: 3rem 0 2rem; font-weight: 600; }
+  .year { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; margin-bottom: 3rem; }
+  .year h2 { font-size: var(--step-0); font-weight: 600; color: var(--muted); margin: 1rem 0 0; font-variant-numeric: tabular-nums; }
+  @media (max-width: 40rem) { .year { grid-template-columns: 1fr; gap: 0.5rem; } .year h2 { margin: 0; } }
+</style>

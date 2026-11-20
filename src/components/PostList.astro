@@ -1,0 +1,19 @@
+---
+import type { Post } from "../lib";
+import { formatDate } from "../lib";
+interface Props { posts: Post[]; compact?: boolean; showDescription?: boolean }
+const { posts, compact = false, showDescription = true } = Astro.props;
+---
+<ul class:list={["posts", { compact }]}>
+  {posts.map((p) => (
+    <li>
+      <a href={`/${p.id}/`}>
+        <span class="t">{p.data.kind === "note" && <span class="kind">Note</span>}{p.data.title}{p.data.draft || !p.data.published ? " (draft)" : ""}</span>
+        <time datetime={p.data.date.toISOString()}>
+          {compact ? p.data.date.getFullYear() : formatDate(p.data.date, { year: "numeric", month: "short" })}
+        </time>
+        {showDescription && p.data.description && <span class="d">{p.data.description}</span>}
+      </a>
+    </li>
+  ))}
+</ul>

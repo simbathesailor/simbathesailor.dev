@@ -1,0 +1,106 @@
+---
+// The home-page headline, streamed in token by token like a model response.
+// Without JS, or with reduced motion, it renders as plain text.
+interface Props { text: string }
+const { text } = Astro.props;
+
+// Rough BPE-flavoured split: leading space stays attached to the word,
+// punctuation is its own token, long words break into two pieces.
+const tokens: string[] = [];
+for (const m of text.matchAll(/\s?[A-Za-z0-9']+|\s?[^\sA-Za-z0-9']/g)) {
+  const piece = m[0];
+  const word = piece.trim();
+  if (word.length > 8) {
+    const cut = piece.length - Math.ceil(word.length / 2);
+    tokens.push(piece.slice(0, cut), piece.slice(cut));
+  } else {
+    tokens.push(piece);
+  }
+}
+---
+<section class="hero">
+  <h1 class="stream tinted" aria-label={text}>
+    {tokens.map((t, i) => <span class="tok" data-k={i % 4} aria-hidden="true">{t}</span>)}<span class="caret" aria-hidden="true"></span>
+  </h1>
+  <p class="readout" aria-hidden="true"><span>&nbsp;</span></p>
+</section>
+
+<style>
+  .hero { padding-top: clamp(2.5rem, 8vw, 5rem); }
+  .stream {
+    font-size: var(--step-5);
+    font-weight: 500;
+    line-height: 1.24;
+    letter-spacing: -0.025em;
+    max-width: 22ch;
+    margin: 0;
+  }
+  .tok { border-radius: 0.12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; transition: background-color 1.2s ease; }
+  .caret {
+    display: none;
+    width: 0.09em; height: 0.85em; margin-left: 0.04em;
+    background: var(--accent); vertical-align: -0.06em;
+    animation: blink 0.9s steps(1) infinite;
+  }
+  .readout {
+    margin: 1.25rem 0 0; min-height: 1.5em;
+    font-size: var(--step--1); color: var(--muted);
+  }
+  .readout span { transition: opacity 0.6s ease; }
+
+  /* .js-stream is set in <head> before paint, so the full text never flashes. */
+  :global(.js-stream) .stream .tok:not(.on) { visibility: hidden; }
+  .stream.streaming .caret { display: inline-block; }
+  /* Resting state: a faint trace of where the token boundaries were. */
+  .stream.tinted .tok[data-k="0"] { background: color-mix(in oklab, var(--t1) calc(13% * var(--tok-boost, 1)), transparent); }
+  .stream.tinted .tok[data-k="1"] { background: color-mix(in oklab, var(--t2) calc(14% * var(--tok-boost, 1)), transparent); }
+  .stream.tinted .tok[data-k="2"] { background: color-mix(in oklab, var(--t3) calc(18% * var(--tok-boost, 1)), transparent); }
+  .stream.tinted .tok[data-k="3"] { background: color-mix(in oklab, var(--t4) calc(13% * var(--tok-boost, 1)), transparent); }
+  .stream.streaming .tok.on[data-k="0"] { background: color-mix(in oklab, var(--t1) 26%, transparent); }
+  .stream.streaming .tok.on[data-k="1"] { background: color-mix(in oklab, var(--t2) 26%, transparent); }
+  .stream.streaming .tok.on[data-k="2"] { background: color-mix(in oklab, var(--t3) 30%, transparent); }
+  .stream.streaming .tok.on[data-k="3"] { background: color-mix(in oklab, var(--t4) 26%, transparent); }
+
+  @keyframes blink { 50% { opacity: 0; } }
+</style>
+
+<script>
+  const h1 = document.querySelector<HTMLElement>(".stream");
+  const readout = document.querySelector<HTMLElement>(".readout span");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (h1 && readout && !reduce) {
+    const toks = [...h1.querySelectorAll<HTMLElement>(".tok")];
+    const caret = h1.querySelector<HTMLElement>(".caret")!;
+    h1.classList.add("streaming");
+
+    const start = performance.now();
+    let i = 0;
+    let firstAt = 0;
+
+    const step = () => {
+      const tok = toks[i];
+      tok.classList.add("on");
+      tok.after(caret);
+      if (i === 0) firstAt = performance.now();
+      i++;
+      if (i < toks.length) {
+        // Decode jitter: mostly steady, occasionally a slower token.
+        const delay = 30 + Math.random() * 40 + (Math.random() < 0.1 ? 90 : 0);
+        setTimeout(step, delay);
+      } else {
+        const total = (performance.now() - start) / 1000;
+        const ttft = Math.round(firstAt - start);
+        const rate = Math.round((toks.length - 1) / ((performance.now() - firstAt) / 1000));
+        readout.style.opacity = "0";
+        readout.textContent = `${toks.length} tokens, ${ttft} ms to first token, ${rate} tokens/s.`;
+        requestAnimationFrame(() => (readout.style.opacity = "1"));
+        setTimeout(() => {
+          h1.classList.remove("streaming");
+        }, 700);
+      }
+    };
+    // Simulated prefill before the first token.
+    setTimeout(step, 300);
+  }
+</script>

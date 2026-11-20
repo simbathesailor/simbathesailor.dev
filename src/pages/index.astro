@@ -1,0 +1,77 @@
+---
+import Base from "../layouts/Base.astro";
+import StreamHero from "../components/StreamHero.astro";
+import PostList from "../components/PostList.astro";
+import { site } from "../site";
+import { getPosts } from "../lib";
+
+const posts = await getPosts();
+const current = posts.filter((p) => p.data.track === "ai-infra");
+const archive = posts.filter((p) => p.data.track !== "ai-infra");
+---
+<Base>
+  <StreamHero text={site.headline} />
+  <p class="intro">{site.intro}</p>
+
+  <section class="section current" style="--sec: var(--c1)">
+    <h2>AI infrastructure</h2>
+    {current.length > 0 ? (
+      <PostList posts={current} />
+    ) : (
+      <p class="section-note">The first notes are on the way. Subscribe with <a href="/rss.xml">RSS</a> to get them.</p>
+    )}
+  </section>
+
+  <section class="section work" id="work" style="--sec: var(--c2)">
+    <h2>Work</h2>
+    <ul class="rows">
+      {site.work.map((w) => (
+        <li><strong>{w.org}</strong><span>{w.role}</span><span class="when">{w.years}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section projects" style="--sec: var(--c3)">
+    <h2>Projects</h2>
+    <ul class="rows">
+      {site.projects.map((p) => (
+        <li><a href={p.href}><strong>{p.name}</strong></a><span>{p.blurb}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section archive" style="--sec: var(--c4)">
+    <h2>Earlier writing</h2>
+    <p class="section-note">React and frontend engineering, 2020 to 2023.</p>
+    <PostList posts={archive} compact showDescription={false} />
+  </section>
+</Base>
+
+<style>
+  .intro { max-width: var(--measure); margin: 1.75rem 0 0; font-family: var(--serif); font-size: var(--step-1); line-height: 1.55; color: var(--muted); }
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .rows li {
+    display: grid; grid-template-columns: 13rem minmax(0, 38rem) 1fr; gap: 0.25rem 1.5rem; align-items: baseline;
+    padding-block: 0.8rem; border-bottom: 1px solid var(--rule);
+  }
+  .rows strong { font-weight: 500; }
+  .rows a { text-decoration: none; }
+  .rows a strong, .work .rows strong { color: var(--sec); }
+  .rows a:hover strong { text-decoration: underline; text-underline-offset: 0.2em; }
+  .current, .archive {
+    background: var(--band); border-radius: 10px;
+    padding: 1.75rem var(--gutter) 1.25rem; margin-inline: calc(-1 * var(--gutter));
+  }
+  .current :global(.posts) { border-top-color: color-mix(in oklab, var(--accent) 18%, var(--rule)); }
+  .current :global(.posts li) { border-bottom-color: color-mix(in oklab, var(--accent) 18%, var(--rule)); }
+  .current :global(.posts .t) { color: var(--accent); }
+  .current :global(.posts a:hover .t) { text-decoration: underline; text-underline-offset: 0.2em; }
+  .current :global(.posts li:last-child), .archive :global(.posts li:last-child) { border-bottom: 0; }
+  .archive { background: var(--band-archive); }
+  .archive :global(.posts), .archive :global(.posts li) { border-color: color-mix(in oklab, var(--c4) 18%, var(--rule)); }
+  .archive :global(.posts time) { color: var(--c4); }
+  .archive :global(.posts a:hover .t) { color: var(--c4); }
+  .rows span { color: var(--muted); font-size: var(--step--1); }
+  .rows .when { white-space: nowrap; text-align: right; }
+  @media (max-width: 40rem) { .rows li { grid-template-columns: 1fr; } }
+</style>
