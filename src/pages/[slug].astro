@@ -1,0 +1,44 @@
+---
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { getPosts, readingMinutes, formatDate, type Post } from "../lib";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props as { post: Post; posts: Post[] };
+const { Content } = await render(post);
+const { title, description, date, updated, tags, cover, track, kind } = post.data;
+const minutes = readingMinutes(post.body);
+// Previous / next within the same group, so readers can go through in order.
+const group = posts.filter((p) => p.data.track === track);
+const i = group.findIndex((p) => p.id === post.id);
+const newer = group[i - 1];
+const older = group[i + 1];
+---
+<Base title={title} description={description} image={cover} type="article">
+  <article>
+    <div class:list={["post-band", { archive: track !== "ai-infra" }]}>
+    <header class="post-head">
+      <h1>{title}</h1>
+      {description && <p class="lede">{description}</p>}
+      <div class="post-meta">
+        {kind === "note" && <span>Note</span>}
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {updated && <span>Updated {formatDate(updated)}</span>}
+        <span>{minutes} min read</span>
+        {tags.length > 0 && <span class="tags">{tags.slice(0, 4).map((t) => <span>{t}</span>)}</span>}
+      </div>
+    </header>
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <nav class="pager" aria-label="More writing">
+    {older && <a class="prev" href={`/${older.id}/`}><span>Previous</span><strong>{older.data.title}</strong></a>}
+    {newer && <a class="next" href={`/${newer.id}/`}><span>Next</span><strong>{newer.data.title}</strong></a>}
+  </nav>
+</Base>
