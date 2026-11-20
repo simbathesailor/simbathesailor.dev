@@ -37,7 +37,8 @@ Frontmatter:
 | `track`       | `ai-infra` (shown first on the home page) or `engineering` (archive).  |
 | `tags`        | `[gpu, inference]`                                                     |
 | `draft`       | `true` hides it from production builds. Delete the line to publish.   |
-| `cover`       | Optional image URL.                                                    |
+| `image`       | Optional share image, e.g. `./share.png` (1200×630 works best).        |
+| `imageAlt`    | Optional alt text for the share image.                                 |
 
 Images: drop them next to `index.mdx` and use `![alt](./diagram.png)`. Astro optimises them.
 Use `.mdx` when you want to embed components, `.md` for plain writing.
@@ -45,3 +46,10 @@ Use `.mdx` when you want to embed components, `.md` for plain writing.
 ## Edit the profile
 
 Name, headline, intro, current topics, projects and social links all live in `src/site.ts`.
+
+## Share previews
+
+When a link is shared on LinkedIn, X, Slack or WhatsApp, the preview card uses an image
+generated at build time from the post title (`/og/<slug>.png`, made by `src/og.ts`).
+Set `image:` in a post's frontmatter to use your own image instead.
+To refresh a preview LinkedIn has already cached, paste the URL into https://www.linkedin.com/post-inspector/.
